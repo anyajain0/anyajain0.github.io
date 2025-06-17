@@ -11,12 +11,14 @@ h1{
   }
 h2{
   font-size: 6vw;
-  line-height: 2;
+  
   }
 h3{font-size: 2.5vw;}
 h4{font-size: 6vw;}  
 h1, h2, h3, h4 {
-  line-height: 0.6;         
+  line-height: 1.2;        
+  margin-top: 0.3em;   
+  margin-bottom: 0.3em;        
 }
 .kitten {
   background-color: white;
