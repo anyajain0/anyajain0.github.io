@@ -11,12 +11,12 @@ h1{
   }
 h2{
   font-size: 6vw;
-  line-height: 1.5;
+  line-height: 2;
   }
 h3{font-size: 2.5vw;}
 h4{font-size: 6vw;}  
 h1, h2, h3, h4 {
-  line-height: 0.8;         
+  line-height: 0.6;         
 }
 .kitten {
   background-color: white;
@@ -25,7 +25,7 @@ h1, h2, h3, h4 {
   border-color: black;  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
-  border-width: 1vw;               
+  border-width: 0.1vw;               
   border-radius: 2vw;
   cursor: pointer;             
   position: absolute;          
@@ -40,7 +40,7 @@ h1, h2, h3, h4 {
   border-color: black;
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
-  border-width: 1vw;               
+  border-width: 0.1vw;               
   border-radius: 2vw;
   cursor: pointer;             
   position: absolute;          
