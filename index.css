@@ -4,6 +4,7 @@ body {
   color: black;
   text-align: right;
   padding-right: 6vw;
+}
   h1{
     padding-top: 5vw;
   }
@@ -30,7 +31,7 @@ body {
 .kitten2 {
   background-color: white;
   font-family:system-ui;
-  font-weight: bold  
+  font-weight: bold;  
   color: #fa16a7;                  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
@@ -42,7 +43,7 @@ body {
   left: 40vw;                  
   transition: transform 0.2s;  
 }  
-}
+
 
 .yaycolors{
   font-weight: bold;
