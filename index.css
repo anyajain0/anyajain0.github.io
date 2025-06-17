@@ -7,12 +7,15 @@ body {
   padding-top: 6vw;
 }
 video {
-  padding-right: 15vw;
-  padding-top: 10 vw;
-  border: 4px solid #333;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 25%; /* 1/4 screen width */
+  height: auto; /* 1/4 screen height */
+  object-fit: cover;
   border-radius: 12px;
-  display: block;
-  margin: 20px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 h1{
