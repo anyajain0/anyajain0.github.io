@@ -6,14 +6,14 @@ body {
   padding-right: 6vw;
 }
 h1{
-    padding-top: 5vw;
+    padding-top: 7vw;
     font-size: 3vw;
   }
 h2{font-size: 6vw;}
 h3{font-size: 2.5vw;}
 h4{font-size: 6vw;}  
 h1, h2, h3, h4 {
-  line-height: 1;         
+  line-height: 1.2;         
 }
 .kitten {
   background-color: white;
