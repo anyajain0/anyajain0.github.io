@@ -5,26 +5,20 @@ body {
   text-align: right;
   padding-right: 6vw;
 }
-  h1{
+h1{
     padding-top: 5vw;
     font-size: 2vw;
   }
-  h2{
-    font-size: 6vw;
-  }
-  h3{
-    font-size: 4vw;
-  }
-  h4{
-    font-size: 6vw;
-  }  
-  h1, h2, h3, h4 {
+h2{font-size: 6vw;}
+h3{font-size: 4vw;}
+h4{font-size: 6vw;}  
+h1, h2, h3, h4 {
   line-height: 1.2;         
 }
-  .kitten {
+.kitten {
   background-color: white;
   font-family:system-ui;
-  font-color: black;  
+  color: black;  
   border-color: black;  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
@@ -39,7 +33,7 @@ body {
 .kitten2 {
   background-color: white;
   font-family:system-ui;  
-  font-color:black;
+  color:black;
   border-color: black;
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
