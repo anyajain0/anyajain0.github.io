@@ -7,7 +7,7 @@ body {
   padding-top: 6vw;
 }
 video {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 20%;
   transform: translateY(-50%);
