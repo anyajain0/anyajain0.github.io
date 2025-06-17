@@ -6,8 +6,7 @@ body {
   padding-right: 6vw;
 }
 h1{
-    position: absolute;
-    top: 4vw;
+    padding-top: 4vw;
     font-size: 3vw;
   }
 h2{font-size: 6vw;}
