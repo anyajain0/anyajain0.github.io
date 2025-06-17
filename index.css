@@ -7,7 +7,17 @@ body {
 }
   h1{
     padding-top: 5vw;
+    font-size: 3vw;
   }
+  h2{
+    font-size: 6vw;
+  }
+  h3{
+    font-size: 3vw:
+  }
+  h4{
+    font-size: 6vw;
+  }  
   h1, h2, h3, h4 {
   line-height: 1.2;        
   margin-top: 0.3em;   
