@@ -24,8 +24,8 @@ body {
   .kitten {
   background-color: white;
   font-family:system-ui;
-  font-weight: bold  
-  color: #fa16a7;                  
+  font-color: black;  
+  border-color: black;  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
   border-weight: 1vw;               
@@ -38,7 +38,9 @@ body {
 }
 .kitten2 {
   background-color: white;
-  font-family:system-ui;                  
+  font-family:system-ui;  
+  font-color:black;
+  border-color: black;
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
   border-weight: 1vw;               
