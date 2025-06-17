@@ -1,0 +1,65 @@
+body {
+  font-family: system-ui;
+  background: #00000;
+  color: black;
+  text-align: right;
+  padding-right: 6vw;
+  h1{
+    padding-top: 5vw;
+  }
+  h1, h2, h3, h4 {
+  line-height: 1.2;        
+  margin-top: 0.3em;   
+  margin-bottom: 0.3em;  
+}
+  .kitten {
+  background-color: white;
+  font-family:system-ui;
+  font-weight: bold  
+  color: #fa16a7;                  
+  font-size: 1.5vw;           
+  padding: 1vw 2vw;            
+  border-weight: 1vw;               
+  border-radius: 2vw;
+  cursor: pointer;             
+  position: absolute;          
+  top: 3vw;                   
+  left: 20vw;                  
+  transition: transform 0.2s;  
+}
+.kitten2 {
+  background-color: white;
+  font-family:system-ui;
+  font-weight: bold  
+  color: #fa16a7;                  
+  font-size: 1.5vw;           
+  padding: 1vw 2vw;            
+  border-weight: 1vw;               
+  border-radius: 2vw;
+  cursor: pointer;             
+  position: absolute;          
+  top: 3vw;                   
+  left: 40vw;                  
+  transition: transform 0.2s;  
+}  
+}
+
+.yaycolors{
+  font-weight: bold;
+  background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: wave 3s linear infinite;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0% 50;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+}
