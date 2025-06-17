@@ -38,9 +38,7 @@ body {
 }
 .kitten2 {
   background-color: white;
-  font-family:system-ui;
-  font-weight: bold;  
-  color: #fa16a7;                  
+  font-family:system-ui;                  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
   border-weight: 1vw;               
