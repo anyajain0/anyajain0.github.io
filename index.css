@@ -71,15 +71,6 @@ h1, h2, h3, h4 {
     background-position: 100% 50%;
   }
 }
-/* Style for the video */
 
-/* Style for the GIF */
-#myGif {
-  width: 40vw;            /* Large and responsive */
-  max-width: 600px;       /* Optional: max size on big screens */
-  display: block;
-  margin-left: 20px;      /* Left aligned */
-  margin-top: 30px;
-}
 
 
