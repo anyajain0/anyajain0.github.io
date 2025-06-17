@@ -19,9 +19,7 @@ body {
     font-size: 6vw;
   }  
   h1, h2, h3, h4 {
-  line-height: 1.2;        
-  margin-top: 0.3em;   
-  margin-bottom: 0.3em;  
+  line-height: 1.2;         
 }
   .kitten {
   background-color: white;
