@@ -6,7 +6,7 @@ body {
   padding-right: 6vw;
 }
 h1{
-    margin-top: 3vw;
+    margin-top: 5vw;
     font-size: 3vw;
   }
 h2{font-size: 6vw;}
@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
   border-color: black;  
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
-  border-weight: 1vw;               
+  border-width: 1vw;               
   border-radius: 2vw;
   cursor: pointer;             
   position: absolute;          
@@ -37,7 +37,7 @@ h1, h2, h3, h4 {
   border-color: black;
   font-size: 1.5vw;           
   padding: 1vw 2vw;            
-  border-weight: 1vw;               
+  border-width: 1vw;               
   border-radius: 2vw;
   cursor: pointer;             
   position: absolute;          
