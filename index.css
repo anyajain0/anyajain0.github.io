@@ -7,7 +7,7 @@ body {
   padding-top: 6vw;
 }
 video {
-  position: absolute;      /* or absolute, depending on your needs */
+  position: relative;      /* or absolute, depending on your needs */
   left: 30%;
   top: 20%;
   width: 18%; /* 1/4 screen width */
