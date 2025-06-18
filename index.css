@@ -9,9 +9,9 @@ body {
 video {
   position: relative;
   top: 50%;
-  left: 20%;
+  left: 80%;
   transform: translateY(-50%);
-  width: 15%; /* 1/4 screen width */
+  width: 20%; /* 1/4 screen width */
   height: auto; /* 1/4 screen height */
   object-fit: cover;
   border-radius: 12px;
