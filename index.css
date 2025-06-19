@@ -8,8 +8,8 @@ body {
 }
 video {
   position: absolute;
-  top: 50%;
-  left: 27%;
+  top: 6vw;
+  left: 30vw;
   transform: translateY(-50%);
   width: 18%; /* 1/4 screen width */
   height: auto; /* 1/4 screen height */
