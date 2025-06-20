@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   var video = document.querySelector(".video");
   if (video) {
-    video.playbackRate = 2.0; 
+    video.playbackRate = 3.0; 
   }
 });
