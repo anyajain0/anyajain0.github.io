@@ -11,7 +11,8 @@ video {
   top: 23vw;
   left: 25vw;
   transform: translateY(-50%);
-  width: 18%; /* 1/4 screen width */
+  clip-path: inset(0 0 5px 0);
+  width: 20%; /* 1/4 screen width */
   height: auto; /* 1/4 screen height */
   object-fit: cover;
   border-radius: 12px;
