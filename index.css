@@ -7,6 +7,9 @@ body {
   padding-top: 6vw;
 }
 video {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 1px;
   position: absolute;
   top: 23vw;
   left: 25vw;
