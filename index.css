@@ -24,6 +24,8 @@ video {
   vertical-align: top;
   background-color: transparent;
   backface-visibility: hidden;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.01); /* Invisible, but forces redrawing */
+
 }
 
 
