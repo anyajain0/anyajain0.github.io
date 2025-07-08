@@ -7,6 +7,8 @@ body {
   padding-top: 6vw;
 }
 video {
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Forces GPU rendering */
   display: block; /* Prevents inline default behavior */
   line-height: 0; /* Prevents phantom spacing */
   outline: none; /* Just in case */
