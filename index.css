@@ -66,42 +66,31 @@ h1, h2, h3, h4 {
   transition: transform 0.2s;  
 }  
 
-
 .yaycolors {
   font-size: 4rem;
   font-weight: bold;
-  background:
-    radial-gradient(circle at 30% 40%, red, transparent 50%),
-    radial-gradient(circle at 70% 60%, orange, transparent 50%),
-    radial-gradient(circle at 50% 80%, pink, transparent 50%),
-    radial-gradient(circle at 60% 30%, purple, transparent 50%);
-  background-size: 300% 300%;
-  background-repeat: no-repeat;
-  background-blend-mode: screen;
+  background: linear-gradient(270deg, #ff0047, #2c34c7, #00ffd5, #ff0047);
+  background-size: 800% 800%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: swirl1 10s ease-in-out infinite alternate,
-             swirl2 7s ease-in-out infinite alternate,
-             swirl3 12s ease-in-out infinite alternate,
-             swirl4 8s ease-in-out infinite alternate;
+  animation: gradientShift 10s ease infinite;
 }
 
-@keyframes swirl1 {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-@keyframes swirl2 {
-  0% { background-position: 100% 0%; }
-  100% { background-position: 0% 100%; }
-}
-@keyframes swirl3 {
-  0% { background-position: 50% 0%; }
-  100% { background-position: 50% 100%; }
-}
-@keyframes swirl4 {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
+
+
+
+
 
 
 
