@@ -71,33 +71,33 @@ h1, h2, h3, h4 {
   font-size: 4rem;
   font-weight: bold;
   background: conic-gradient(
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
+    red, orange, yellow, green, blue, indigo, violet, red
   );
-  background-size: 200% 200%;
+  background-size: 300% 300%;   /* larger than the text area */
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: swirl 10s linear infinite;
+  animation: swirlGradient 8s linear infinite;
 }
 
-@keyframes swirl {
+@keyframes swirlGradient {
   0% {
     background-position: 50% 50%;
   }
+  25% {
+    background-position: 40% 60%;
+  }
   50% {
-    background-position: 25% 75%;
+    background-position: 60% 40%;
+  }
+  75% {
+    background-position: 30% 70%;
   }
   100% {
     background-position: 50% 50%;
   }
 }
+
 
 
 
