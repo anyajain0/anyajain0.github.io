@@ -70,11 +70,8 @@ h1, h2, h3, h4 {
 .yaycolors {
   font-size: 4rem;
   font-weight: bold;
-  --angle: 0deg;
-  background: conic-gradient(
-    from var(--angle),
-    red, orange, pink, purple, blue, indigo, violet, pink
-  );
+  background: radial-gradient(circle at center, 
+    red 0%, orange 16.6%, pink 33.3%, purple 50%, blue 66.6%, indigo 83.3%, violet 100%);
   background-size: 300% 300%;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
@@ -83,13 +80,23 @@ h1, h2, h3, h4 {
 }
 
 @keyframes swirlGradient {
-  from {
-    --angle: 0deg;
+  0% {
+    background-position: 0% 50%;
   }
-  to {
-    --angle: 360deg;
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
+
 
 
 
