@@ -75,7 +75,7 @@ h1, h2, h3, h4 {
     radial-gradient(circle at 70% 60%, rgba(255, 165, 0, 0.7), transparent 60%),
     radial-gradient(circle at 50% 80%, rgba(255, 192, 203, 0.7), transparent 60%),
     radial-gradient(circle at 60% 30%, rgba(128, 0, 128, 0.7), transparent 60%);
-  background-size: 300% 300%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-blend-mode: screen;
   -webkit-background-clip: text;
