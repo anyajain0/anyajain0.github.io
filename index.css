@@ -80,10 +80,10 @@ h1, h2, h3, h4 {
     violet,
     red
   );
-  background-size: 200% 200%;
+  background-size: 500% 500%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: moveGradient 5s linear infinite;
+  animation: moveGradient 2s linear infinite;
 }
 
 @keyframes moveGradient {
