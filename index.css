@@ -67,11 +67,10 @@ h1, h2, h3, h4 {
 }  
 
 
-.yaycolors {
+.rainbow-text {
   font-size: 4rem;
   font-weight: bold;
   background: conic-gradient(
-    from 0deg,
     red,
     orange,
     yellow,
@@ -82,15 +81,22 @@ h1, h2, h3, h4 {
     red
   );
   background-size: 200% 200%;
+  background-repeat: no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: swirl 5s infinite linear;
+  animation: swirl 10s linear infinite;
 }
 
 @keyframes swirl {
-  0% { background-position: 0% 50%; transform: rotate(0deg); }
-  50% { background-position: 100% 0%; transform: rotate(180deg); }
-  100% { background-position: 0% 50%; transform: rotate(360deg); }
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 25% 75%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
 }
 
 
