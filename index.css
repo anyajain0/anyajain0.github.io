@@ -83,11 +83,11 @@ h1, h2, h3, h4 {
   -webkit-text-fill-color: transparent;
 
   animation:
-    swirl1 8s ease-in-out infinite,
-    swirl2 7s ease-in-out infinite,
-    swirl3 6s ease-in-out infinite,
-    swirl4 9s ease-in-out infinite,
-    swirl5 5s ease-in-out infinite;
+    swirl1 5s ease-in-out infinite,
+    swirl2 4s ease-in-out infinite,
+    swirl3 3s ease-in-out infinite,
+    swirl4 6s ease-in-out infinite,
+    swirl5 2s ease-in-out infinite;
 }
 
 @keyframes swirl1 {
