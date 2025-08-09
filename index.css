@@ -71,37 +71,39 @@ h1, h2, h3, h4 {
   font-size: 4rem;
   font-weight: bold;
   background:
-    radial-gradient(circle at 30% 40%, red, transparent 50%),
-    radial-gradient(circle at 70% 60%, orange, transparent 50%),
-    radial-gradient(circle at 50% 80%, pink, transparent 50%),
-    radial-gradient(circle at 60% 30%, purple, transparent 50%);
+    radial-gradient(circle at 30% 40%, rgba(255,0,0,0.7), transparent 60%),
+    radial-gradient(circle at 70% 60%, rgba(255,165,0,0.7), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(255,192,203,0.7), transparent 60%),
+    radial-gradient(circle at 60% 30%, rgba(128,0,128,0.7), transparent 60%);
   background-size: 300% 300%;
   background-repeat: no-repeat;
   background-blend-mode: screen;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: swirl1 10s ease-in-out infinite alternate,
-             swirl2 7s ease-in-out infinite alternate,
-             swirl3 12s ease-in-out infinite alternate,
-             swirl4 8s ease-in-out infinite alternate;
+  animation:
+    swirl1 10s linear infinite,
+    swirl2 7s linear infinite,
+    swirl3 12s linear infinite,
+    swirl4 8s linear infinite;
 }
 
 @keyframes swirl1 {
-  0% { background-position: 0% 0%; }
+  0%   { background-position: 0% 0%; }
   100% { background-position: 100% 100%; }
 }
 @keyframes swirl2 {
-  0% { background-position: 100% 0%; }
+  0%   { background-position: 100% 0%; }
   100% { background-position: 0% 100%; }
 }
 @keyframes swirl3 {
-  0% { background-position: 50% 0%; }
+  0%   { background-position: 50% 0%; }
   100% { background-position: 50% 100%; }
 }
 @keyframes swirl4 {
-  0% { background-position: 0% 50%; }
+  0%   { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
+
 
 
 
