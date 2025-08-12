@@ -1,6 +1,6 @@
 body {
   font-family: system-ui;
-  background: #ffccee;
+  background: #fff2fb;
   color: black;
   text-align: right;
   padding-right: 6vw;
@@ -36,7 +36,7 @@ h1, h2, h3, h4 {
   margin-bottom: 0.3em;        
 }
 .kitten {
-  background-color: #fff2fb;
+  background-color: #ffccee;
   font-family:system-ui;
   color: black;  
   border-color: black;  
@@ -51,7 +51,7 @@ h1, h2, h3, h4 {
   transition: transform 0.2s;  
 }
 .kitten2 {
-  background-color: #fff2fb;
+  background-color: #ffccee;
   font-family:system-ui;  
   color:black;
   border-color: black;
