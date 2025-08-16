@@ -1,20 +1,34 @@
-<link rel="stylesheet" href="index.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1>hey there 💕</h1>
-<h2 class="yaycolors">i'm anya</h2>
-<h3> [and i luv 2] </h3>
-<h4> make stuff </h4> 
-<button class="kitten">projects</button>
-<button class="kitten2">about me</button>
-<video src="poh.mov" muted autoplay loop playsinline class="video"></video>
-<link rel="stylesheet" href="index.css">
-</video>
-<script>
-document.querySelector(".kitten").onclick = () => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anya's Site</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h1>hey there 💕</h1>
+  <h2 class="yaycolors">i'm anya</h2>
+  <h3>[and i luv 2]</h3>
+  <h4>make stuff</h4> 
+
+  <!-- Buttons -->
+  <button class="kitten">projects</button>
+  <button class="kitten2">about me</button>
+
+  <!-- Background video -->
+  <video src="poh.mov" muted autoplay loop playsinline class="video"></video>
+
+  <script>
+    // button navigation
+    document.querySelector(".kitten").onclick = () => {
       window.location.href = "projects.html";  // goes to projects page
     };
 
-document.querySelector(".kitten2").onclick = () => {
+    document.querySelector(".kitten2").onclick = () => {
       window.location.href = "about.html";     // goes to about page
     };
-<script src="script.js"></script>
+  </script>
+</body>
+</html>
+
