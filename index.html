@@ -5,70 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anya's Site</title>
   <link rel="stylesheet" href="index.css">
-  <style>
-    /* Base MacBook Air resolution */
-    :root {
-      --base-width: 1440;
-      --base-height: 900;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff2fb;
-    }
-
-    /* Scalable container */
-    .container {
-      position: relative;
-      width: var(--base-width)px;
-      height: var(--base-height)px;
-      transform-origin: top left;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>hey there 💕</h1>
-    <h2 class="yaycolors">i'm anya</h2>
-    <h3>[and i luv 2]</h3>
-    <h4>make stuff</h4>
+  <h1>hey there 💕</h1>
+  <h2 class="yaycolors">i'm anya</h2>
+  <h3>[and i luv 2]</h3>
+  <h4>make stuff</h4>
 
-    <!-- Buttons -->
-    <button class="kitten">projects</button>
-    <button class="kitten2">about me</button>
+  <!-- Buttons -->
+  <button class="kitten">projects</button>
+  <button class="kitten2">about me</button>
 
-    <!-- Background video -->
-    <video src="poh.mov" muted autoplay loop playsinline class="video"></video>
-  </div>
-
-  <script src="script.js"></script>
+  <!-- Background video -->
+  <video src="poh.mov" muted autoplay loop playsinline class="video"></video>
 
   <script>
-    // Scale container proportionally to fill screen
-    function scaleContainer() {
-      const container = document.querySelector('.container');
-      const scaleX = window.innerWidth / 1440;
-      const scaleY = window.innerHeight / 900;
-      const scale = Math.min(scaleX, scaleY);
-      container.style.transform = `scale(${scale})`;
-    }
-
-    window.addEventListener('resize', scaleContainer);
-    window.addEventListener('load', scaleContainer);
-
-    // Button navigation
+    // button navigation
     document.querySelector(".kitten").onclick = () => {
-      window.location.href = "projects.html";
+      window.location.href = "projects.html"; // goes to projects page
     };
+
     document.querySelector(".kitten2").onclick = () => {
-      window.location.href = "about.html";
+      window.location.href = "about.html"; // goes to about page
     };
   </script>
 </body>
