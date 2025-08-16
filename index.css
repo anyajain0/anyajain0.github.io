@@ -1,4 +1,3 @@
-
 body {
   font-family: system-ui;
   background: #fff2fb;
@@ -10,47 +9,37 @@ body {
   overflow-x: hidden; /* prevent sideways scrolling */
 }
 
-/* Make video scale with screen */
 video {
   position: absolute;
-  top: 23vh;          /* vh works better than vw for vertical placement */
+  top: 23vw;              /* back to vw so it matches MacBook look */
   left: 25vw;
   transform: translateY(-50%);
-  width: 22vw;        /* proportional to screen width */
+  width: 22vw; 
   height: auto; 
   object-fit: cover;
-  border-radius: 2vw;
+  border-radius: 12px;
   border: none;
-  box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Headings scale */
-h1 {
-  font-size: clamp(1rem, 3vw, 2.5rem); 
-}
-h2 {
-  font-size: clamp(1.5rem, 6vw, 4rem);
-}
-h3 {
-  font-size: clamp(1rem, 2.5vw, 2rem);
-}
-h4 {
-  font-size: clamp(1.5rem, 6vw, 4rem);
-}
+h1 { font-size: 3vw; }
+h2 { font-size: 6vw; }
+h3 { font-size: 2.5vw; }
+h4 { font-size: 6vw; }
+
 h1, h2, h3, h4 {
   line-height: 1.2;        
   margin-top: 0.3em;   
   margin-bottom: 0.3em;        
 }
 
-/* Buttons */
 .kitten,
 .kitten2 {
   background-color: #ffccee;
   font-family: system-ui;
   color: black;  
   border: 0.1vw solid black;  
-  font-size: clamp(0.8rem, 1.5vw, 1.5rem);           
+  font-size: 1.5vw;           
   padding: 1vw 2vw;            
   border-radius: 2vw;
   cursor: pointer;             
@@ -58,14 +47,10 @@ h1, h2, h3, h4 {
   top: 3vw;                   
   transition: transform 0.2s;  
 }
-.kitten {
-  left: 20vw;                  
-}
-.kitten2 {
-  left: 40vw;                  
-}
 
-/* Gradient text */
+.kitten { left: 20vw; }
+.kitten2 { left: 40vw; }
+
 .yaycolors {
   font-weight: bold;
   background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
@@ -77,13 +62,12 @@ h1, h2, h3, h4 {
   animation: wave 5s linear infinite;
 }
 
-/* Animated gradient movement */
 @keyframes wave {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* RESPONSIVE FIXES for small screens */
+/* RESPONSIVE FIXES for small screens only */
 @media (max-width: 768px) {
   body {
     text-align: center;
@@ -96,7 +80,8 @@ h1, h2, h3, h4 {
     left: auto;
     transform: none;
     width: 80vw;
-    margin-top: 5vh;
+    margin: 5vh auto 0 auto;
+    display: block;
   }
 
   .kitten, .kitten2 {
@@ -105,7 +90,14 @@ h1, h2, h3, h4 {
     margin: 2vw;
     left: auto;
     top: auto;
+    font-size: 4vw;   /* bump size up on small screens */
+    padding: 2vw 4vw;
   }
+
+  h1 { font-size: 6vw; }
+  h2 { font-size: 10vw; }
+  h3 { font-size: 5vw; }
+  h4 { font-size: 10vw; }
 }
 
 
