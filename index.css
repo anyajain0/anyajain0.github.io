@@ -1,5 +1,6 @@
 body {
   font-family: system-ui;
+  background: #ffccee;
   background: #fff2fb;
   color: black;
   text-align: right;
@@ -26,7 +27,7 @@ h1{
   }
 h2{
   font-size: 6vw;
-  
+
   }
 h3{font-size: 2.5vw;}
 h4{font-size: 6vw;}  
@@ -36,6 +37,7 @@ h1, h2, h3, h4 {
   margin-bottom: 0.3em;        
 }
 .kitten {
+  background-color: #fff2fb;
   background-color: #ffccee;
   font-family:system-ui;
   color: black;  
@@ -51,6 +53,7 @@ h1, h2, h3, h4 {
   transition: transform 0.2s;  
 }
 .kitten2 {
+  background-color: #fff2fb;
   background-color: #ffccee;
   font-family:system-ui;  
   color:black;
@@ -86,6 +89,7 @@ h1, h2, h3, h4 {
     background-position: 100% 50%;
   }
 }
+
 
 
 
