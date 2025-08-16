@@ -1,22 +1,21 @@
-<link rel="stylesheet" href="index.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1>hey there 💕</h1>
-<h2 class="yaycolors">i'm anya</h2>
-<h3> [and i luv 2] </h3>
-<h4> make stuff </h4> 
-<button class="kitten">projects</button>
-<button class="kitten2">about me</button>
-<video src="poh.mov" muted autoplay loop playsinline class="video"></video>
-<link rel="stylesheet" href="index.css">
-</video>
-<script>
-document.querySelector(".kitten").onclick = () => {
-      window.location.href = "projects.html";  // goes to projects page
-    };
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h1>hey there 💕</h1>
+  <h2 class="yaycolors">i'm anya</h2>
+  <h3>[and i luv 2]</h3>
+  <h4>make stuff</h4>
 
-document.querySelector(".kitten2").onclick = () => {
-      window.location.href = "about.html";     // goes to about page
-    };
-<script src="script.js"></script>
+  <!-- Buttons as links -->
+  <a href="projects.html" class="kitten">projects</a>
+  <a href="about.html" class="kitten2">about me</a>
 
-
+  <!-- Background video -->
+  <video src="poh.mov" muted autoplay loop playsinline class="video"></video>
+</body>
+</html>
