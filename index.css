@@ -55,6 +55,12 @@ h1, h2, h3, h4 {
 .kitten { left: 20vw; }
 .kitten2 { left: 40vw; }
 
+a.kitten:hover, 
+a.kitten2:hover {
+  background: red;   /* turns red on hover */
+  color: red;      /* keep text visible */
+}
+
 .yaycolors{
   font-weight: bold;
   background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
