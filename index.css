@@ -1,53 +1,94 @@
-body {
+/* ===========================
+   Base Styles (MacBook Air)
+=========================== */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   font-family: system-ui;
   background: #fff2fb;
   color: black;
+}
+
+.container {
+  position: relative;
+  width: 1440px;   /* MacBook Air base width */
+  height: 900px;   /* MacBook Air base height */
+  transform-origin: top left;
+}
+
+/* ===========================
+   Headings
+=========================== */
+h1 {
+  font-size: 43px;  /* 3vw at 1440px */
+  line-height: 1.2;
+  margin: 0.3em 0;
   text-align: right;
-  padding-right: 6vmin;
-  padding-top: 6vmin;
 }
 
-video {
-  position: absolute;
-  top: 23vmin;
-  left: 25vmin;
-  transform: translateY(-50%);
-  width: 22vmin; 
-  height: auto; 
-  object-fit: cover;
-  border-radius: 1.2vmin;
-  border: none;
-  box-shadow: 0 0 1.5vmin rgba(0, 0, 0, 0.25);
+h2 {
+  font-size: 86px;  /* 6vw */
+  line-height: 1.2;
+  margin: 0.3em 0;
+  text-align: right;
 }
 
-h1 { font-size: 3vmin; }
-h2 { font-size: 6vmin; }
-h3 { font-size: 2.5vmin; }
-h4 { font-size: 6vmin; }
-
-h1, h2, h3, h4 {
-  line-height: 1.2;        
-  margin-top: 0.3em;   
-  margin-bottom: 0.3em;        
+h3 {
+  font-size: 36px;  /* 2.5vw */
+  line-height: 1.2;
+  margin: 0.3em 0;
+  text-align: right;
 }
 
+h4 {
+  font-size: 86px;  /* 6vw */
+  line-height: 1.2;
+  margin: 0.3em 0;
+  text-align: right;
+}
+
+/* ===========================
+   Buttons
+=========================== */
 .kitten, .kitten2 {
   background-color: #ffccee;
   font-family: system-ui;
-  color: black;  
-  border: 0.1vmin solid black;  
-  font-size: 1.5vmin;           
-  padding: 1vmin 2vmin;            
-  border-radius: 2vmin;
-  cursor: pointer;             
-  position: absolute;          
-  top: 3vmin;                   
-  transition: transform 0.2s;  
+  color: black;
+  border: 1.44px solid black;   /* 0.1vw at 1440px */
+  font-size: 21.6px;            /* 1.5vw */
+  padding: 14.4px 28.8px;       /* 1vw 2vw */
+  border-radius: 28.8px;        /* 2vw */
+  cursor: pointer;
+  position: absolute;
+  top: 43.2px;                  /* 3vw */
+  transition: transform 0.2s;
 }
 
-.kitten { left: 20vmin; }
-.kitten2 { left: 40vmin; }
+.kitten { left: 288px; }        /* 20vw */
+.kitten2 { left: 576px; }       /* 40vw */
 
+/* ===========================
+   Video
+=========================== */
+.video {
+  position: absolute;
+  top: 330px;                    /* 23vw */
+  left: 360px;                   /* 25vw */
+  transform: translateY(-50%);
+  width: 316.8px;                /* 22vw */
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 21.6px rgba(0,0,0,0.25);  /* 1.5vw */
+}
+
+/* ===========================
+   Gradient Text
+=========================== */
 .yaycolors {
   font-weight: bold;
   background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
@@ -63,6 +104,7 @@ h1, h2, h3, h4 {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
+
 
 
 
