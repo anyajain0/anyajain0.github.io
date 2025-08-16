@@ -1,48 +1,126 @@
-/* General page styles */
 body {
-  background: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  font-family: system-ui;
+  background: #ffccee;
+  background: #fff2fb;
+  color: black;
+  text-align: right;
+  padding-right: 6vw;
+  padding-top: 6vw;
   margin: 0;
-  padding: 0;
 }
 
-/* Headline text */
-h1 {
-  font-size: 4rem;
+/* Background video */
+video {
+  position: absolute;
+  top: 23vw;
+  left: 25vw;
+  transform: translateY(-50%);
+  /*clip-path: inset(0 0 5px 0);*/
+  width: 22%; 
+  height: auto; 
+  object-fit: cover;
+@@ -21,56 +22,54 @@ video {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+
+h1{
+    font-size: 3vw;
+  }
+h2{
+  font-size: 6vw;
+
+  }
+h3{font-size: 2.5vw;}
+h4{font-size: 6vw;}  
+/* Headings */
+h1 { font-size: 3vw; }
+h2 { font-size: 6vw; }
+h3 { font-size: 2.5vw; }
+h4 { font-size: 6vw; }
+h1, h2, h3, h4 {
+  line-height: 1.2;        
+  margin-top: 0.3em;   
+  margin-bottom: 0.3em;        
+}
+.kitten {
+  background-color: #fff2fb;
+  background-color: #ffccee;
+  font-family:system-ui;
+  color: black;  
+  border-color: black;  
+  font-size: 1.5vw;           
+  padding: 1vw 2vw;            
+  border-width: 0.1vw;               
+  border-radius: 2vw;
+  cursor: pointer;             
+  position: absolute;          
+  top: 3vw;                   
+  left: 20vw;                  
+  transition: transform 0.2s;  
+
+/* Reset browser button styles */
+button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font: inherit;
+  line-height: normal;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Buttons */
+.kitten,
+.kitten2 {
+  background-color: #fff2fb;
+  background-color: #ffccee;
+  font-family:system-ui;  
+  color:black;
+  border-color: black;
+  font-family: system-ui;
+  color: black;  
+  border: 0.1vw solid black;  
+  font-size: 1.5vw;           
+  padding: 1vw 2vw;            
+  border-width: 0.1vw;               
+  border-radius: 2vw;
+  cursor: pointer;             
+  transition: transform 0.2s;
+  position: absolute;          
+  top: 3vw;                   
+  left: 40vw;                  
+  transition: transform 0.2s;  
+}  
+  top: 3vw;    
+}
+
+.kitten { left: 20vw; }
+.kitten2 { left: 40vw; }
+
+.kitten:hover,
+.kitten2:hover {
+  transform: scale(1.05);
+}
+
+.yaycolors{
+/* Gradient text */
+.yaycolors {
   font-weight: bold;
-  margin-top: 50px;
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbowShift 5s infinite linear;
+  background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
+  background-size: 300% 300%;
+@@ -82,12 +81,8 @@ h1, h2, h3, h4 {
 }
 
-/* Button styles */
-a.kitten, 
-a.kitten2 {
-  text-decoration: none;      /* remove underline */
-  color: white;               /* text color */
-  background: black;          /* button background */
-  padding: 12px 24px;         /* spacing */
-  border-radius: 12px;        /* rounded corners */
-  display: inline-block;      /* blocky button look */
-  margin: 10px;               /* spacing between buttons */
-  font-size: 1.2rem;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Hover effect */
-a.kitten:hover, 
-a.kitten2:hover {
-  background: red;   /* turns red on hover */
-  color: white;      /* keep text visible */
-}
-
-/* Gradient animation for the header */
-@keyframes rainbowShift {
-  0% { background-position: 0% 50%; }
+@keyframes wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+  0%   { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
