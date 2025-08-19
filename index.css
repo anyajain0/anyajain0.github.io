@@ -2,62 +2,79 @@ body {
   font-family: system-ui;
   background: #fff2fb;
   color: black;
+  text-align: right;
+  padding-right: clamp(12px, 3vmin, 4vw);
+  padding-top: clamp(12px, 3vmin, 4vw);
   margin: 0;
-  min-height: 100vh;     /* fill full screen */
-  display: flex;         
-  flex-direction: column;
-  align-items: center;   /* center horizontally */
-  justify-content: center; /* center vertically */
-  gap: 4vmin;            /* spacing that scales */
+  min-height: 100vh; /* always fills screen */
 }
 
-.header {
-  display: flex;
-  gap: 4vmin;
+/* Video stays proportional */
+video {
+  position: absolute;
+  top: 23vmin;
+  left: 25vmin;
+  transform: translateY(-50%);
+  width: clamp(150px, 22vmin, 30vw); /* scales but never too tiny/huge */
+  height: auto;
+  object-fit: cover;
+  border-radius: clamp(8px, 1.5vmin, 20px);
+  border: none;
+  box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.25);
 }
 
+/* Responsive typography */
+h1 { font-size: clamp(16px, 3vmin, 3.5vw); }
+h2 { font-size: clamp(22px, 6vmin, 7vw); }
+h3 { font-size: clamp(14px, 2.5vmin, 3vw); }
+h4 { font-size: clamp(22px, 6vmin, 7vw); }
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+/* Buttons */
 .kitten, .kitten2 {
   background-color: #ffccee;
   font-family: system-ui;
   color: black;  
   border: 0.1vmin solid black;
-  font-size: 2vmin;           
-  padding: 1vmin 2vmin;            
-  border-radius: 2vmin;
+  font-size: clamp(12px, 1.5vmin, 1.8vw);
+  padding: clamp(6px, 1vmin, 1.2vw) clamp(12px, 2vmin, 2.5vw);
+  border-radius: clamp(12px, 2vmin, 20px);
   cursor: pointer;             
+  position: absolute;          
+  top: 3vmin;                   
   transition: transform 0.2s;  
   text-decoration: none;
 }
 
-a.kitten:hover, 
-a.kitten2:hover {
+/* Keep relative button positions */
+.kitten { left: 20vmin; }
+.kitten2 { left: 40vmin; }
+
+a.kitten:hover, a.kitten2:hover {
   background: red;
-  color: white;
+  color: white; /* ✅ text visible on hover */
 }
 
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6vmin;
+/* Gradient text */
+.yaycolors {
+  font-weight: bold;
+  background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: wave 5s linear infinite;
 }
 
-video, .image {
-  width: 30vmin;
-  height: auto;
-  border-radius: 2vmin;
-  box-shadow: 0 0 2vmin rgba(0,0,0,0.25);
+@keyframes wave {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
-
-.text {
-  text-align: left;
-}
-
-h1 { font-size: 3vmin; }
-h2 { font-size: 6vmin; }
-h3 { font-size: 2.5vmin; }
-h4 { font-size: 6vmin; }
 
 
 
