@@ -3,33 +3,31 @@ body {
   background: #fff2fb;
   color: black;
   text-align: right;
-  padding-right: 6vw;
-  padding-top: 6vw;
+  padding-right: 6vmin;   /* scales with smaller dimension */
+  padding-top: 6vmin;
+  display: flex;          /* flexbox for proportional layout */
+  flex-direction: column;
+  align-items: flex-end;  /* keep text aligned right */
 }
+
 video {
   position: absolute;
-  top: 23vw;
-  left: 25vw;
+  top: 23vmin;            /* scales with screen proportion */
+  left: 25vmin;
   transform: translateY(-50%);
-  /*clip-path: inset(0 0 5px 0);*/
-  width: 22%; 
+  width: 22vmin;          /* scales proportionally */
   height: auto; 
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 1.5vmin;
   border: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.25);
 }
 
+h1 { font-size: 3vmin; }
+h2 { font-size: 6vmin; }
+h3 { font-size: 2.5vmin; }
+h4 { font-size: 6vmin; }
 
-h1{
-    font-size: 3vw;
-  }
-h2{
-  font-size: 6vw;
-  
-  }
-h3{font-size: 2.5vw;}
-h4{font-size: 6vw;}  
 h1, h2, h3, h4 {
   line-height: 1.2;        
   margin-top: 0.3em;   
@@ -40,46 +38,41 @@ h1, h2, h3, h4 {
   background-color: #ffccee;
   font-family: system-ui;
   color: black;  
-  border: 0.1vw solid black;   /* ✅ outline fixed */
-  font-size: 1.5vw;           
-  padding: 1vw 2vw;            
-  border-radius: 2vw;
+  border: 0.1vmin solid black;  /* scales properly */
+  font-size: 1.5vmin;           
+  padding: 1vmin 2vmin;            
+  border-radius: 2vmin;
   cursor: pointer;             
   position: absolute;          
-  top: 3vw;                   
+  top: 3vmin;                   
   transition: transform 0.2s;  
-  text-decoration: none;       /* ✅ no underline */
+  text-decoration: none;
 }
 
-/* keep their different positions */
-.kitten { left: 20vw; }
-.kitten2 { left: 40vw; }
+.kitten { left: 20vmin; }
+.kitten2 { left: 40vmin; }
 
 a.kitten:hover, 
 a.kitten2:hover {
-  background: red;   /* turns red on hover */
-  color: red;      /* keep text visible */
+  background: red;
+  color: white;  /* ✅ keep text visible on red */
 }
 
-.yaycolors{
+.yaycolors {
   font-weight: bold;
   background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
   background-size: 300% 300%;
   background-clip: text;
   -webkit-background-clip: text;
-  -moz-background-clip: text;
   color: transparent;
   animation: wave 5s linear infinite;
 }
 
 @keyframes wave {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
+
 
 
 
