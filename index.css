@@ -2,25 +2,56 @@ body {
   font-family: system-ui;
   background: #fff2fb;
   color: black;
-  text-align: right;
-  padding-right: 6vmin;   /* scales with smaller dimension */
-  padding-top: 6vmin;
-  display: flex;          /* flexbox for proportional layout */
+  margin: 0;
+  min-height: 100vh;     /* fill full screen */
+  display: flex;         
   flex-direction: column;
-  align-items: flex-end;  /* keep text aligned right */
+  align-items: center;   /* center horizontally */
+  justify-content: center; /* center vertically */
+  gap: 4vmin;            /* spacing that scales */
 }
 
-video {
-  position: absolute;
-  top: 23vmin;            /* scales with screen proportion */
-  left: 25vmin;
-  transform: translateY(-50%);
-  width: 22vmin;          /* scales proportionally */
-  height: auto; 
-  object-fit: cover;
-  border-radius: 1.5vmin;
-  border: none;
-  box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.25);
+.header {
+  display: flex;
+  gap: 4vmin;
+}
+
+.kitten, .kitten2 {
+  background-color: #ffccee;
+  font-family: system-ui;
+  color: black;  
+  border: 0.1vmin solid black;
+  font-size: 2vmin;           
+  padding: 1vmin 2vmin;            
+  border-radius: 2vmin;
+  cursor: pointer;             
+  transition: transform 0.2s;  
+  text-decoration: none;
+}
+
+a.kitten:hover, 
+a.kitten2:hover {
+  background: red;
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6vmin;
+}
+
+video, .image {
+  width: 30vmin;
+  height: auto;
+  border-radius: 2vmin;
+  box-shadow: 0 0 2vmin rgba(0,0,0,0.25);
+}
+
+.text {
+  text-align: left;
 }
 
 h1 { font-size: 3vmin; }
@@ -28,50 +59,6 @@ h2 { font-size: 6vmin; }
 h3 { font-size: 2.5vmin; }
 h4 { font-size: 6vmin; }
 
-h1, h2, h3, h4 {
-  line-height: 1.2;        
-  margin-top: 0.3em;   
-  margin-bottom: 0.3em;        
-}
-
-.kitten, .kitten2 {
-  background-color: #ffccee;
-  font-family: system-ui;
-  color: black;  
-  border: 0.1vmin solid black;  /* scales properly */
-  font-size: 1.5vmin;           
-  padding: 1vmin 2vmin;            
-  border-radius: 2vmin;
-  cursor: pointer;             
-  position: absolute;          
-  top: 3vmin;                   
-  transition: transform 0.2s;  
-  text-decoration: none;
-}
-
-.kitten { left: 20vmin; }
-.kitten2 { left: 40vmin; }
-
-a.kitten:hover, 
-a.kitten2:hover {
-  background: red;
-  color: white;  /* ✅ keep text visible on red */
-}
-
-.yaycolors {
-  font-weight: bold;
-  background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
-  background-size: 300% 300%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: wave 5s linear infinite;
-}
-
-@keyframes wave {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
 
 
 
