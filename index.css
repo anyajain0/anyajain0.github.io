@@ -7,24 +7,22 @@
 html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background: #fff2fb;
   color: black;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
 }
 
-/* ========== BUTTONS CONTAINER (TOP LEFT) ========== */
+/* ========== BUTTONS (TOP LEFT) ========== */
 .buttons-container {
   position: fixed;
   top: 2.5vw;
   left: 2.5vw;
   display: flex;
-  gap: 2vw;
+  gap: 2.5vw;
   z-index: 100;
 }
 
@@ -34,8 +32,8 @@ body {
   font-family: system-ui;
   color: black;
   border: 0.15vw solid black;
-  font-size: 1.8vw;
-  padding: 1.2vw 2.5vw;
+  font-size: 1.5vw;
+  padding: 1vw 2.5vw;
   border-radius: 2vw;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -71,43 +69,41 @@ body {
   z-index: 10;
 }
 
-/* ========== CONTENT CONTAINER (RIGHT SIDE) ========== */
+/* ========== CONTENT (RIGHT CENTER) ========== */
 .content-container {
-  margin-left: auto;
-  padding: 4vw;
-  padding-right: 6vw;
+  position: fixed;
+  right: 3vw;
+  top: 50%;
+  transform: translateY(-50%);
   text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
   z-index: 20;
+  max-width: 50vw;
 }
 
 h1 {
-  font-size: 5vw;
+  font-size: 4.5vw;
   font-weight: 600;
   line-height: 1.1;
-  margin-bottom: 1.5vw;
+  margin-bottom: 1vw;
 }
 
 h2 {
-  font-size: 9vw;
+  font-size: 8vw;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 2vw;
+  margin-bottom: 1.5vw;
 }
 
 h3 {
-  font-size: 3.5vw;
+  font-size: 3vw;
   font-weight: 400;
   line-height: 1.2;
-  margin-bottom: 2.5vw;
+  margin-bottom: 2vw;
   opacity: 0.9;
 }
 
 h4 {
-  font-size: 6.5vw;
+  font-size: 6vw;
   font-weight: 700;
   line-height: 1.1;
 }
@@ -127,58 +123,116 @@ h4 {
   100% { background-position: 100% 50%; }
 }
 
-/* ========== TABLET RESPONSIVENESS (768px and below) ========== */
-@media (max-width: 768px) {
+/* ========== TABLET RESPONSIVENESS (1024px and below) ========== */
+@media (max-width: 1024px) {
   .buttons-container {
-    top: 1.5vw;
-    left: 1.5vw;
-    gap: 1.5vw;
+    top: 2vw;
+    left: 2vw;
+    gap: 2vw;
   }
 
   .kitten,
   .kitten2 {
-    font-size: 1.5vw;
-    padding: 1vw 2vw;
-    border-radius: 1.5vw;
+    font-size: 1.3vw;
+    padding: 0.9vw 2vw;
+    border-radius: 1.8vw;
   }
 
   .video {
     left: 2vw;
-    width: 28vw;
-    border-radius: 1.2vw;
+    width: 25vw;
   }
 
   .content-container {
-    padding: 3vw;
-    padding-right: 4vw;
-    min-height: auto;
-    padding-top: 12vw;
+    right: 2vw;
+    max-width: 45vw;
   }
 
   h1 {
-    font-size: 4.5vw;
-    margin-bottom: 1.2vw;
+    font-size: 4vw;
+    margin-bottom: 0.8vw;
   }
 
   h2 {
-    font-size: 7.5vw;
+    font-size: 7vw;
+    margin-bottom: 1.2vw;
+  }
+
+  h3 {
+    font-size: 2.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  h4 {
+    font-size: 5vw;
+  }
+}
+
+/* ========== SMALL TABLET (768px and below) ========== */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons-container {
+    position: static;
+    width: 100%;
+    padding: 2vw;
+    gap: 2vw;
+    justify-content: flex-start;
+    margin-bottom: 2vw;
+  }
+
+  .kitten,
+  .kitten2 {
+    font-size: 2vw;
+    padding: 1.2vw 2.5vw;
+    border-radius: 2vw;
+  }
+
+  .video {
+    position: static;
+    transform: none;
+    width: 80vw;
+    height: auto;
+    margin: 0 auto 3vw;
+    border-radius: 2vw;
+  }
+
+  .content-container {
+    position: static;
+    transform: none;
+    text-align: center;
+    max-width: 100%;
+    padding: 0 3vw 3vw;
+  }
+
+  h1 {
+    font-size: 5vw;
+    margin-bottom: 1vw;
+  }
+
+  h2 {
+    font-size: 8vw;
     margin-bottom: 1.5vw;
   }
 
   h3 {
-    font-size: 3vw;
+    font-size: 3.5vw;
     margin-bottom: 2vw;
   }
 
   h4 {
-    font-size: 5.5vw;
+    font-size: 6.5vw;
   }
 }
 
-/* ========== MOBILE RESPONSIVENESS (480px and below) ========== */
+/* ========== MOBILE (480px and below) ========== */
 @media (max-width: 480px) {
   body {
-    flex-direction: column-reverse;
+    overflow-y: auto;
   }
 
   .buttons-container {
@@ -187,50 +241,46 @@ h4 {
     padding: 3vw;
     gap: 3vw;
     justify-content: flex-start;
-    margin-bottom: 4vw;
+    margin-bottom: 3vw;
   }
 
   .kitten,
   .kitten2 {
-    font-size: 2.2vw;
+    font-size: 2.5vw;
     padding: 1.5vw 3vw;
-    border-radius: 2vw;
-    border: 0.2vw solid black;
-    flex: 1;
-    text-align: center;
+    border-radius: 2.5vw;
   }
 
   .video {
     position: static;
     transform: none;
-    width: 100%;
+    width: 90vw;
     height: auto;
-    max-width: 90vw;
-    margin: 3vw auto;
+    margin: 0 auto 4vw;
     border-radius: 2vw;
   }
 
   .content-container {
-    margin-left: 0;
-    padding: 4vw;
+    position: static;
+    transform: none;
     text-align: center;
-    min-height: auto;
-    padding-top: 2vw;
+    max-width: 100%;
+    padding: 0 4vw 4vw;
   }
 
   h1 {
     font-size: 6vw;
-    margin-bottom: 2vw;
+    margin-bottom: 1.5vw;
   }
 
   h2 {
     font-size: 9vw;
-    margin-bottom: 2.5vw;
+    margin-bottom: 2vw;
   }
 
   h3 {
     font-size: 4vw;
-    margin-bottom: 3vw;
+    margin-bottom: 2.5vw;
   }
 
   h4 {
@@ -238,12 +288,12 @@ h4 {
   }
 }
 
-/* ========== SMALL MOBILE (320px and below) ========== */
-@media (max-width: 320px) {
+/* ========== SMALL MOBILE (360px and below) ========== */
+@media (max-width: 360px) {
   .kitten,
   .kitten2 {
-    font-size: 2.5vw;
-    padding: 2vw 2.5vw;
+    font-size: 2.8vw;
+    padding: 1.5vw 2.5vw;
   }
 
   h1 {
@@ -260,34 +310,6 @@ h4 {
 
   h4 {
     font-size: 6.5vw;
-  }
-}
-
-/* ========== LANDSCAPE MODE ========== */
-@media (max-height: 500px) {
-  .content-container {
-    min-height: auto;
-    padding-top: 2vw;
-    padding-bottom: 2vw;
-  }
-
-  h1 {
-    font-size: 3.5vw;
-    margin-bottom: 0.8vw;
-  }
-
-  h2 {
-    font-size: 6vw;
-    margin-bottom: 1vw;
-  }
-
-  h3 {
-    font-size: 2.5vw;
-    margin-bottom: 1.2vw;
-  }
-
-  h4 {
-    font-size: 5vw;
   }
 }
 
@@ -313,10 +335,6 @@ h4 {
   outline: 0.3vw solid black;
   outline-offset: 0.3vw;
 }
-
-
-
-
 
 
 
