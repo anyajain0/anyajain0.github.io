@@ -16,7 +16,7 @@ body {
   color: black;
 }
 
-/* ========== BUTTONS (TOP LEFT) ========== */
+/* ========== BUTTONS (TOP LEFT) - ALL VW ========== */
 .buttons-container {
   position: fixed;
   top: 2.5vw;
@@ -40,6 +40,10 @@ body {
   text-decoration: none;
   font-weight: 500;
   white-space: nowrap;
+  height: 4.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .kitten:hover,
@@ -54,7 +58,7 @@ body {
   transform: scale(0.98);
 }
 
-/* ========== VIDEO (LEFT CENTER) ========== */
+/* ========== VIDEO (LEFT CENTER) - ALL VW ========== */
 .video {
   position: fixed;
   left: 3vw;
@@ -69,7 +73,7 @@ body {
   z-index: 10;
 }
 
-/* ========== CONTENT (RIGHT CENTER) ========== */
+/* ========== CONTENT (RIGHT CENTER) - ALL VW ========== */
 .content-container {
   position: fixed;
   right: 3vw;
@@ -121,196 +125,6 @@ h4 {
 @keyframes wave {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
-}
-
-/* ========== TABLET RESPONSIVENESS (1024px and below) ========== */
-@media (max-width: 1024px) {
-  .buttons-container {
-    top: 2vw;
-    left: 2vw;
-    gap: 2vw;
-  }
-
-  .kitten,
-  .kitten2 {
-    font-size: 1.3vw;
-    padding: 0.9vw 2vw;
-    border-radius: 1.8vw;
-  }
-
-  .video {
-    left: 2vw;
-    width: 25vw;
-  }
-
-  .content-container {
-    right: 2vw;
-    max-width: 45vw;
-  }
-
-  h1 {
-    font-size: 4vw;
-    margin-bottom: 0.8vw;
-  }
-
-  h2 {
-    font-size: 7vw;
-    margin-bottom: 1.2vw;
-  }
-
-  h3 {
-    font-size: 2.5vw;
-    margin-bottom: 1.5vw;
-  }
-
-  h4 {
-    font-size: 5vw;
-  }
-}
-
-/* ========== SMALL TABLET (768px and below) ========== */
-@media (max-width: 768px) {
-  body {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .buttons-container {
-    position: static;
-    width: 100%;
-    padding: 2vw;
-    gap: 2vw;
-    justify-content: flex-start;
-    margin-bottom: 2vw;
-  }
-
-  .kitten,
-  .kitten2 {
-    font-size: 2vw;
-    padding: 1.2vw 2.5vw;
-    border-radius: 2vw;
-  }
-
-  .video {
-    position: static;
-    transform: none;
-    width: 80vw;
-    height: auto;
-    margin: 0 auto 3vw;
-    border-radius: 2vw;
-  }
-
-  .content-container {
-    position: static;
-    transform: none;
-    text-align: center;
-    max-width: 100%;
-    padding: 0 3vw 3vw;
-  }
-
-  h1 {
-    font-size: 5vw;
-    margin-bottom: 1vw;
-  }
-
-  h2 {
-    font-size: 8vw;
-    margin-bottom: 1.5vw;
-  }
-
-  h3 {
-    font-size: 3.5vw;
-    margin-bottom: 2vw;
-  }
-
-  h4 {
-    font-size: 6.5vw;
-  }
-}
-
-/* ========== MOBILE (480px and below) ========== */
-@media (max-width: 480px) {
-  body {
-    overflow-y: auto;
-  }
-
-  .buttons-container {
-    position: static;
-    width: 100%;
-    padding: 3vw;
-    gap: 3vw;
-    justify-content: flex-start;
-    margin-bottom: 3vw;
-  }
-
-  .kitten,
-  .kitten2 {
-    font-size: 2.5vw;
-    padding: 1.5vw 3vw;
-    border-radius: 2.5vw;
-  }
-
-  .video {
-    position: static;
-    transform: none;
-    width: 90vw;
-    height: auto;
-    margin: 0 auto 4vw;
-    border-radius: 2vw;
-  }
-
-  .content-container {
-    position: static;
-    transform: none;
-    text-align: center;
-    max-width: 100%;
-    padding: 0 4vw 4vw;
-  }
-
-  h1 {
-    font-size: 6vw;
-    margin-bottom: 1.5vw;
-  }
-
-  h2 {
-    font-size: 9vw;
-    margin-bottom: 2vw;
-  }
-
-  h3 {
-    font-size: 4vw;
-    margin-bottom: 2.5vw;
-  }
-
-  h4 {
-    font-size: 7vw;
-  }
-}
-
-/* ========== SMALL MOBILE (360px and below) ========== */
-@media (max-width: 360px) {
-  .kitten,
-  .kitten2 {
-    font-size: 2.8vw;
-    padding: 1.5vw 2.5vw;
-  }
-
-  h1 {
-    font-size: 5.5vw;
-  }
-
-  h2 {
-    font-size: 8vw;
-  }
-
-  h3 {
-    font-size: 3.5vw;
-  }
-
-  h4 {
-    font-size: 6.5vw;
-  }
 }
 
 /* ========== ACCESSIBILITY ========== */
