@@ -1,84 +1,317 @@
-/* Base responsive setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
-  font-family: system-ui;
+  font-family: system-ui, -apple-system, sans-serif;
   background: #fff2fb;
   color: black;
-  text-align: right;
-  padding-right: 6vw;
-  padding-top: 6vw;
-  margin: 0;
-  overflow-x: hidden; /* avoids scrollbars on scaling */
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-/* Responsive video */
-video {
-  position: absolute;
-  top: 23vw;    /* proportional positioning */
-  left: 25vw;   /* proportional positioning */
-  transform: translateY(-50%);
-  width: 22vw;  /* proportional size */
-  height: auto;
-  object-fit: cover;
-  border-radius: 1.2vw; /* scales proportionally */
-  border: none;
-  box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.25);
+/* ========== BUTTONS CONTAINER (TOP LEFT) ========== */
+.buttons-container {
+  position: fixed;
+  top: 2.5vw;
+  left: 2.5vw;
+  display: flex;
+  gap: 2vw;
+  z-index: 100;
 }
 
-/* Scalable typography */
-h1 { font-size: 3vw; }
-h2 { font-size: 6vw; }
-h3 { font-size: 2.5vw; }
-h4 { font-size: 6vw; }
-
-h1, h2, h3, h4 {
-  line-height: 1.2;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
-}
-
-/* Buttons - proportional with screen */
 .kitten,
 .kitten2 {
   background-color: #ffccee;
   font-family: system-ui;
   color: black;
-  border: 0.1vw solid black;   /* proportional border */
-  font-size: 1.5vw;            /* scales with screen */
-  padding: 1vw 2vw;
+  border: 0.15vw solid black;
+  font-size: 1.8vw;
+  padding: 1.2vw 2.5vw;
   border-radius: 2vw;
   cursor: pointer;
-  position: absolute;
-  top: 3vw;
-  transition: transform 0.2s, background 0.2s;
-  text-decoration: none;       /* no underline */
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-/* Keep their different positions, but still proportional */
-.kitten { left: 20vw; }
-.kitten2 { left: 40vw; }
-
-/* Hover effect */
-a.kitten:hover,
-a.kitten2:hover {
+.kitten:hover,
+.kitten2:hover {
   background: red;
-  color: white; /* ✅ ensures text stays visible */
+  color: white;
+  transform: scale(1.05);
 }
 
-/* Gradient animated text */
+.kitten:active,
+.kitten2:active {
+  transform: scale(0.98);
+}
+
+/* ========== VIDEO (LEFT CENTER) ========== */
+.video {
+  position: fixed;
+  left: 3vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22vw;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1.5vw;
+  border: 0.15vw solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+/* ========== CONTENT CONTAINER (RIGHT SIDE) ========== */
+.content-container {
+  margin-left: auto;
+  padding: 4vw;
+  padding-right: 6vw;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  z-index: 20;
+}
+
+h1 {
+  font-size: 5vw;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 1.5vw;
+}
+
+h2 {
+  font-size: 9vw;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2vw;
+}
+
+h3 {
+  font-size: 3.5vw;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 2.5vw;
+  opacity: 0.9;
+}
+
+h4 {
+  font-size: 6.5vw;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Gradient animated text for h2 */
 .yaycolors {
-  font-weight: bold;
   background: radial-gradient(circle at center, red, pink, orange, indigo, violet);
   background-size: 300% 300%;
-  background-clip: text;
   -webkit-background-clip: text;
-  -moz-background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: wave 5s linear infinite;
 }
 
 @keyframes wave {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
+}
+
+/* ========== TABLET RESPONSIVENESS (768px and below) ========== */
+@media (max-width: 768px) {
+  .buttons-container {
+    top: 1.5vw;
+    left: 1.5vw;
+    gap: 1.5vw;
+  }
+
+  .kitten,
+  .kitten2 {
+    font-size: 1.5vw;
+    padding: 1vw 2vw;
+    border-radius: 1.5vw;
+  }
+
+  .video {
+    left: 2vw;
+    width: 28vw;
+    border-radius: 1.2vw;
+  }
+
+  .content-container {
+    padding: 3vw;
+    padding-right: 4vw;
+    min-height: auto;
+    padding-top: 12vw;
+  }
+
+  h1 {
+    font-size: 4.5vw;
+    margin-bottom: 1.2vw;
+  }
+
+  h2 {
+    font-size: 7.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  h3 {
+    font-size: 3vw;
+    margin-bottom: 2vw;
+  }
+
+  h4 {
+    font-size: 5.5vw;
+  }
+}
+
+/* ========== MOBILE RESPONSIVENESS (480px and below) ========== */
+@media (max-width: 480px) {
+  body {
+    flex-direction: column-reverse;
+  }
+
+  .buttons-container {
+    position: static;
+    width: 100%;
+    padding: 3vw;
+    gap: 3vw;
+    justify-content: flex-start;
+    margin-bottom: 4vw;
+  }
+
+  .kitten,
+  .kitten2 {
+    font-size: 2.2vw;
+    padding: 1.5vw 3vw;
+    border-radius: 2vw;
+    border: 0.2vw solid black;
+    flex: 1;
+    text-align: center;
+  }
+
+  .video {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-width: 90vw;
+    margin: 3vw auto;
+    border-radius: 2vw;
+  }
+
+  .content-container {
+    margin-left: 0;
+    padding: 4vw;
+    text-align: center;
+    min-height: auto;
+    padding-top: 2vw;
+  }
+
+  h1 {
+    font-size: 6vw;
+    margin-bottom: 2vw;
+  }
+
+  h2 {
+    font-size: 9vw;
+    margin-bottom: 2.5vw;
+  }
+
+  h3 {
+    font-size: 4vw;
+    margin-bottom: 3vw;
+  }
+
+  h4 {
+    font-size: 7vw;
+  }
+}
+
+/* ========== SMALL MOBILE (320px and below) ========== */
+@media (max-width: 320px) {
+  .kitten,
+  .kitten2 {
+    font-size: 2.5vw;
+    padding: 2vw 2.5vw;
+  }
+
+  h1 {
+    font-size: 5.5vw;
+  }
+
+  h2 {
+    font-size: 8vw;
+  }
+
+  h3 {
+    font-size: 3.5vw;
+  }
+
+  h4 {
+    font-size: 6.5vw;
+  }
+}
+
+/* ========== LANDSCAPE MODE ========== */
+@media (max-height: 500px) {
+  .content-container {
+    min-height: auto;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+  }
+
+  h1 {
+    font-size: 3.5vw;
+    margin-bottom: 0.8vw;
+  }
+
+  h2 {
+    font-size: 6vw;
+    margin-bottom: 1vw;
+  }
+
+  h3 {
+    font-size: 2.5vw;
+    margin-bottom: 1.2vw;
+  }
+
+  h4 {
+    font-size: 5vw;
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+  .yaycolors {
+    animation: none;
+    background: linear-gradient(135deg, red, pink, orange, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .kitten:hover,
+  .kitten2:hover {
+    transform: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.kitten:focus-visible,
+.kitten2:focus-visible {
+  outline: 0.3vw solid black;
+  outline-offset: 0.3vw;
 }
 
 
