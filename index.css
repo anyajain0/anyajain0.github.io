@@ -20,7 +20,7 @@ body {
 .buttons-container {
   position: fixed;
   top: 2.5vw;
-  left: 2.5vw;
+  left: 4vw;
   display: flex;
   gap: 2.5vw;
   z-index: 100;
@@ -31,7 +31,7 @@ body {
   background-color: #ffccee;
   font-family: system-ui;
   color: black;
-  border: 0.15vw solid black;
+  border: 0.08vw solid black;
   font-size: 1.5vw;
   padding: 1vw 2.5vw;
   border-radius: 2vw;
@@ -61,14 +61,14 @@ body {
 /* ========== VIDEO (LEFT CENTER) - ALL VW ========== */
 .video {
   position: fixed;
-  left: 3vw;
+  left: 5vw;
   top: 50%;
   transform: translateY(-50%);
   width: 22vw;
   height: auto;
   object-fit: cover;
   border-radius: 1.5vw;
-  border: 0.15vw solid rgba(0, 0, 0, 0.1);
+  border: 0.08vw solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
@@ -76,7 +76,7 @@ body {
 /* ========== CONTENT (RIGHT CENTER) - ALL VW ========== */
 .content-container {
   position: fixed;
-  right: 3vw;
+  right: 5vw;
   top: 50%;
   transform: translateY(-50%);
   text-align: right;
