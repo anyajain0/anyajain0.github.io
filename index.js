@@ -53,56 +53,6 @@ const dialogDescription = document.querySelector("#dialog-description");
 const dialogTools = document.querySelector("#dialog-tools");
 const dialogFocus = document.querySelector("#dialog-focus");
 const closeDialog = document.querySelector(".close-dialog");
-const portraitFrame = document.querySelector(".portrait-frame");
-const titleLockup = document.querySelector(".title-lockup");
-
-if (portraitFrame) {
-  const moveGlass = (event) => {
-    const rect = portraitFrame.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-    portraitFrame.style.setProperty("--glass-x", `${x.toFixed(1)}%`);
-    portraitFrame.style.setProperty("--glass-y", `${y.toFixed(1)}%`);
-  };
-
-  const resetGlass = () => {
-    portraitFrame.style.setProperty("--glass-x", "72%");
-    portraitFrame.style.setProperty("--glass-y", "28%");
-  };
-
-  portraitFrame.addEventListener("pointermove", moveGlass);
-  portraitFrame.addEventListener("pointerleave", resetGlass);
-}
-
-if (titleLockup) {
-  const liquidEnter = document.querySelector("#liquid-enter");
-  const liquidLeave = document.querySelector("#liquid-leave");
-
-  const moveTitleLiquid = (event) => {
-    const rect = titleLockup.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-    titleLockup.style.setProperty("--liquid-x", `${x.toFixed(1)}%`);
-    titleLockup.style.setProperty("--liquid-y", `${y.toFixed(1)}%`);
-  };
-
-  titleLockup.addEventListener("pointerenter", (event) => {
-    titleLockup.classList.add("is-liquid");
-    liquidEnter?.beginElement();
-    moveTitleLiquid(event);
-  });
-
-  titleLockup.addEventListener("pointermove", moveTitleLiquid);
-
-  titleLockup.addEventListener("pointerleave", () => {
-    titleLockup.classList.remove("is-liquid");
-    titleLockup.style.setProperty("--liquid-x", "38%");
-    titleLockup.style.setProperty("--liquid-y", "45%");
-    liquidLeave?.beginElement();
-  });
-}
 
 document.querySelectorAll(".project-tile").forEach((tile) => {
   const video = tile.querySelector("video");
