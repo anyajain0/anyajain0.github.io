@@ -126,7 +126,9 @@ nav a[aria-current="page"],
   justify-content: center;
   gap: 14px;
   max-width: 100%;
+  min-height: 92px;
   margin-bottom: 28px;
+  overflow: visible;
 }
 
 .logo-mark {
@@ -143,15 +145,18 @@ nav a[aria-current="page"],
 }
 
 .gradient-name {
+  display: block;
   margin: 0;
+  padding: 8px 0 14px;
   font-size: 48px;
-  line-height: 1.08;
+  line-height: 1.2;
   font-weight: 700;
   letter-spacing: 0;
   background: linear-gradient(90deg, #174fff 0%, #6863b8 25%, #f07a58 42%, #ff2ba8 65%, #1b55f8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  overflow: visible;
 }
 
 .definition {
