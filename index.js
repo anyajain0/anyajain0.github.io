@@ -53,6 +53,26 @@ const dialogDescription = document.querySelector("#dialog-description");
 const dialogTools = document.querySelector("#dialog-tools");
 const dialogFocus = document.querySelector("#dialog-focus");
 const closeDialog = document.querySelector(".close-dialog");
+const portraitFrame = document.querySelector(".portrait-frame");
+
+if (portraitFrame) {
+  const moveGlass = (event) => {
+    const rect = portraitFrame.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    portraitFrame.style.setProperty("--glass-x", `${x.toFixed(1)}%`);
+    portraitFrame.style.setProperty("--glass-y", `${y.toFixed(1)}%`);
+  };
+
+  const resetGlass = () => {
+    portraitFrame.style.setProperty("--glass-x", "72%");
+    portraitFrame.style.setProperty("--glass-y", "28%");
+  };
+
+  portraitFrame.addEventListener("pointermove", moveGlass);
+  portraitFrame.addEventListener("pointerleave", resetGlass);
+}
 
 document.querySelectorAll(".project-tile").forEach((tile) => {
   const video = tile.querySelector("video");
