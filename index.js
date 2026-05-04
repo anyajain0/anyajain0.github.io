@@ -24,10 +24,22 @@ const projects = [
   },
   {
     title: "[Mixed Media Works]",
-    media: "mixed-media-works.png",
-    type: "image",
-    description:
-      "Consolidated as an Instagram-style post featuring the emperor penguin first, then the polar bear, then the snow leopard.",
+    type: "gallery",
+    mediaItems: [
+      {
+        src: "mixed-media-emperor-penguin.png",
+        alt: "Emperor penguin mixed media artwork"
+      },
+      {
+        src: "mixed-media-polar-bear.jpg",
+        alt: "Polar bear mixed media artwork"
+      },
+      {
+        src: "mixed-media-snow-leopard.jpg",
+        alt: "Snow leopard mixed media artwork"
+      }
+    ],
+    description: "",
     tools: "//digital art, photography, photoshop//"
   },
   {
@@ -66,6 +78,30 @@ function openProject(project) {
   if (!dialog || !dialogMedia) return;
 
   dialogMedia.replaceChildren();
+  renderProjectMedia(project);
+  dialogTitle.textContent = project.title;
+  dialogDescription.textContent = project.description;
+  dialogTools.textContent = project.tools;
+
+  if (typeof dialog.showModal === "function") {
+    dialog.showModal();
+  } else {
+    dialog.setAttribute("open", "");
+  }
+}
+
+function closeProject() {
+  if (!dialog || !dialogMedia) return;
+
+  dialogMedia.querySelectorAll("video").forEach((video) => video.pause());
+  dialog.close();
+}
+
+function renderProjectMedia(project) {
+  if (project.type === "gallery" && Array.isArray(project.mediaItems)) {
+    renderGallery(project);
+    return;
+  }
 
   const media = document.createElement(project.type === "video" ? "video" : "img");
   media.src = project.media;
@@ -81,22 +117,61 @@ function openProject(project) {
   }
 
   dialogMedia.append(media);
-  dialogTitle.textContent = project.title;
-  dialogDescription.textContent = project.description;
-  dialogTools.textContent = project.tools;
-
-  if (typeof dialog.showModal === "function") {
-    dialog.showModal();
-  } else {
-    dialog.setAttribute("open", "");
-  }
 }
 
-function closeProject() {
-  if (!dialog || !dialogMedia) return;
+function renderGallery(project) {
+  let currentIndex = 0;
 
-  dialogMedia.querySelector("video")?.pause();
-  dialog.close();
+  const carousel = document.createElement("div");
+  carousel.className = "media-carousel";
+
+  const track = document.createElement("div");
+  track.className = "media-carousel-track";
+
+  const counter = document.createElement("p");
+  counter.className = "media-carousel-count";
+
+  const prevButton = document.createElement("button");
+  prevButton.className = "media-carousel-nav media-carousel-nav-prev";
+  prevButton.type = "button";
+  prevButton.setAttribute("aria-label", "Previous artwork");
+  prevButton.textContent = "←";
+
+  const nextButton = document.createElement("button");
+  nextButton.className = "media-carousel-nav media-carousel-nav-next";
+  nextButton.type = "button";
+  nextButton.setAttribute("aria-label", "Next artwork");
+  nextButton.textContent = "→";
+
+  project.mediaItems.forEach((item, index) => {
+    const slide = document.createElement("figure");
+    slide.className = "media-carousel-slide";
+    slide.hidden = index !== 0;
+
+    const image = document.createElement("img");
+    image.src = item.src;
+    image.alt = item.alt;
+
+    slide.append(image);
+    track.append(slide);
+  });
+
+  function updateGallery(nextIndex) {
+    currentIndex = (nextIndex + project.mediaItems.length) % project.mediaItems.length;
+
+    Array.from(track.children).forEach((slide, index) => {
+      slide.hidden = index !== currentIndex;
+    });
+
+    counter.textContent = `${currentIndex + 1} / ${project.mediaItems.length}`;
+  }
+
+  prevButton.addEventListener("click", () => updateGallery(currentIndex - 1));
+  nextButton.addEventListener("click", () => updateGallery(currentIndex + 1));
+
+  carousel.append(prevButton, track, nextButton, counter);
+  dialogMedia.append(carousel);
+  updateGallery(0);
 }
 
 closeDialog?.addEventListener("click", closeProject);
@@ -108,5 +183,5 @@ dialog?.addEventListener("click", (event) => {
 });
 
 dialog?.addEventListener("close", () => {
-  dialogMedia.querySelector("video")?.pause();
+  dialogMedia.querySelectorAll("video").forEach((video) => video.pause());
 });

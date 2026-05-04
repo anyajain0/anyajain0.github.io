@@ -490,6 +490,58 @@ nav a:focus-visible::after,
   background: #faf7fb;
 }
 
+.media-carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+}
+
+.media-carousel-track {
+  width: 100%;
+  height: 100%;
+}
+
+.media-carousel-slide {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.media-carousel-slide[hidden] {
+  display: none;
+}
+
+.media-carousel-nav {
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  border: 1px solid var(--glass-line);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.media-carousel-count {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  z-index: 1;
+  min-width: 44px;
+  padding: 4px 8px;
+  border: 1px solid var(--glass-line);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--nav);
+  text-align: center;
+}
+
 .dialog-media video,
 .dialog-media img {
   display: block;
@@ -594,6 +646,10 @@ nav a:focus-visible::after,
     min-height: 320px;
     max-height: 54svh;
   }
+
+  .media-carousel {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -655,5 +711,14 @@ nav a:focus-visible::after,
 
   .dialog-copy {
     padding: 44px 22px 26px;
+  }
+
+  .media-carousel-count {
+    right: 12px;
+    bottom: 10px;
+  }
+
+  .dialog-media img {
+    padding: 20px;
   }
 }
