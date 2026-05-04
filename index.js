@@ -8,12 +8,11 @@ const projects = [
     tools: "//made with TouchDesigner//"
   },
   {
-    title: "body of glass",
-    media: "bog.mov",
-    type: "video",
-    description:
-      "A material exploration for objects that feel delicate but engineered. The piece studies transparency, reflection, and how synthetic surfaces can still feel tactile.",
-    tools: "material research, 3D form, visual prototyping"
+    title: "[Conceptual 3D Models]",
+    media: "conceptual-3d-models.png",
+    type: "image",
+    description: "",
+    tools: "//Designed and rendered from scratch using Shapr3D//"
   },
   {
     title: "[Pinch-controlled 3D Particle System]",
