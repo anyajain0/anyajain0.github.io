@@ -1,12 +1,12 @@
 const projects = [
   {
-    title: "path of hue",
-    media: "poh.mov",
+    title: "[Thomas Attractor]",
+    media: "thomas-attractor-7x.mov",
     type: "video",
     description:
-      "A motion study about how color can behave like a route, a mood, and a tiny interface language. Built as a quick visual system for testing pacing, contrast, and soft transitions.",
-    tools: "video, motion design, color systems",
-    focus: "turning a visual experiment into a repeatable palette logic"
+      "Learned how to visualize strange attractors by using GLSL to define the movement of points through a system of three ordinary differential equations, tracing out the Thomas strange attractor over time.",
+    tools: "//made with TouchDesigner//",
+    focus: "GLSL code can be modified to visualize any strange attractor by changing the equations."
   },
   {
     title: "body of glass",
