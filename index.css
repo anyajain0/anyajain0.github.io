@@ -31,6 +31,13 @@ body {
   line-height: 1.55;
 }
 
+.filter-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 a {
   color: inherit;
 }
@@ -227,14 +234,16 @@ nav a:focus-visible::after,
   z-index: 1;
   border-radius: 18px;
   background:
-    radial-gradient(circle at var(--glass-x) var(--glass-y), rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.2) 12%, transparent 31%),
-    radial-gradient(circle at calc(var(--glass-x) + 9%) calc(var(--glass-y) + 8%), rgba(75, 196, 255, 0.32), transparent 24%),
-    radial-gradient(circle at calc(var(--glass-x) - 13%) calc(var(--glass-y) + 16%), rgba(255, 72, 199, 0.24), transparent 28%),
-    linear-gradient(125deg, rgba(255, 255, 255, 0.36), transparent 30%);
+    radial-gradient(ellipse at 20% 34%, rgba(255, 255, 255, 0.34), transparent 18%),
+    linear-gradient(105deg, transparent 4%, rgba(59, 196, 255, 0.18) 24%, rgba(255, 70, 206, 0.14) 47%, rgba(255, 255, 255, 0.28) 56%, transparent 74%),
+    radial-gradient(circle at 82% 18%, rgba(158, 221, 255, 0.2), transparent 30%);
+  background-size: 140% 100%, 230% 100%, 120% 120%;
+  background-position: 0% 50%, 0% 50%, 100% 0%;
   mix-blend-mode: screen;
-  opacity: 0.68;
+  opacity: 0.42;
   pointer-events: none;
-  transition: opacity 160ms ease;
+  animation: liquidPhoto 9s ease-in-out infinite alternate;
+  transition: opacity 180ms ease;
 }
 
 .portrait-frame::after {
@@ -248,7 +257,7 @@ nav a:focus-visible::after,
     inset 12px 14px 26px rgba(255, 255, 255, 0.16),
     inset -14px -18px 30px rgba(40, 73, 150, 0.1);
   background:
-    radial-gradient(circle at var(--glass-x) var(--glass-y), rgba(255, 255, 255, 0.28), transparent 21%),
+    radial-gradient(circle at var(--glass-x) var(--glass-y), rgba(255, 255, 255, 0.18), transparent 18%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 38%);
   pointer-events: none;
 }
@@ -263,7 +272,7 @@ nav a:focus-visible::after,
 
 .portrait-frame:hover::before,
 .portrait-frame:focus-within::before {
-  opacity: 0.9;
+  opacity: 0.6;
 }
 
 .portrait {
@@ -286,6 +295,8 @@ nav a:focus-visible::after,
 }
 
 .title-lockup {
+  --liquid-x: 38%;
+  --liquid-y: 45%;
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -298,32 +309,13 @@ nav a:focus-visible::after,
   overflow: visible;
 }
 
-.title-lockup::before {
-  position: absolute;
-  content: "";
-  inset: 9px -18px 8px -16px;
-  z-index: -1;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.62), transparent 28%),
-    linear-gradient(105deg, rgba(75, 196, 255, 0.08), rgba(255, 72, 199, 0.12), rgba(40, 92, 255, 0.08)),
-    rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.82),
-    inset 16px 14px 26px rgba(255, 255, 255, 0.18),
-    0 18px 42px rgba(48, 62, 105, 0.08);
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  opacity: 0;
-  transform: scaleX(0.96);
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.title-lockup:hover::before,
-.title-lockup:focus-within::before {
-  opacity: 1;
-  transform: scaleX(1);
+.title-lockup:hover .gradient-name,
+.title-lockup:focus-within .gradient-name,
+.title-lockup.is-liquid .gradient-name,
+.title-lockup:hover .logo-image,
+.title-lockup:focus-within .logo-image,
+.title-lockup.is-liquid .logo-image {
+  filter: url("#liquid-type") drop-shadow(0 10px 18px rgba(75, 92, 160, 0.16));
 }
 
 .logo-mark {
@@ -341,7 +333,14 @@ nav a:focus-visible::after,
   object-fit: contain;
   transform: translate(6px, 3px) scale(1.15);
   transform-origin: center;
-  filter: drop-shadow(0 8px 16px rgba(48, 62, 105, 0.08));
+  filter: drop-shadow(0 8px 16px rgba(48, 62, 105, 0.08)) saturate(1.08);
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.title-lockup:hover .logo-image,
+.title-lockup:focus-within .logo-image,
+.title-lockup.is-liquid .logo-image {
+  transform: translate(6px, 3px) scale(1.18);
 }
 
 .gradient-name {
@@ -353,14 +352,27 @@ nav a:focus-visible::after,
   font-weight: 700;
   letter-spacing: 0;
   background:
-    radial-gradient(circle at 18% 35%, rgba(255, 255, 255, 0.78), transparent 11%),
-    linear-gradient(100deg, #174fff 0%, #6863b8 22%, #f07a58 41%, #ff2ba8 62%, #7f42df 78%, #1b55f8 100%);
-  background-size: 140% 140%, 220% 100%;
+    radial-gradient(circle at var(--liquid-x) var(--liquid-y), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.38) 7%, transparent 16%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.4) 0%, transparent 14%, rgba(255, 255, 255, 0.34) 26%, transparent 38%),
+    linear-gradient(100deg, #174fff 0%, #6863b8 19%, #f07a58 38%, #ff2ba8 57%, #8a41df 76%, #1b55f8 100%);
+  background-size: 140% 140%, 260% 100%, 240% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   overflow: visible;
   animation: liquidName 7s ease-in-out infinite alternate;
+  -webkit-text-stroke: 0.35px rgba(255, 255, 255, 0.34);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.42),
+    0 8px 18px rgba(48, 62, 105, 0.1);
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.title-lockup:hover .gradient-name,
+.title-lockup:focus-within .gradient-name,
+.title-lockup.is-liquid .gradient-name {
+  animation-duration: 2.6s;
+  transform: translateY(-1px);
 }
 
 .definition {
@@ -373,18 +385,29 @@ nav a:focus-visible::after,
 
 @keyframes liquidName {
   0% {
-    background-position: 8% 38%, 0% 50%;
-    filter: drop-shadow(0 7px 16px rgba(48, 62, 105, 0.06));
+    background-position: 8% 38%, 0% 50%, 0% 50%;
   }
 
   50% {
-    background-position: 72% 30%, 58% 50%;
-    filter: drop-shadow(0 9px 20px rgba(255, 78, 216, 0.09));
+    background-position: 72% 30%, 58% 50%, 62% 50%;
   }
 
   100% {
-    background-position: 34% 62%, 100% 50%;
-    filter: drop-shadow(0 8px 18px rgba(40, 92, 255, 0.08));
+    background-position: 34% 62%, 100% 50%, 100% 50%;
+  }
+}
+
+@keyframes liquidPhoto {
+  0% {
+    background-position: 0% 52%, 0% 50%, 100% 0%;
+  }
+
+  50% {
+    background-position: 38% 46%, 54% 50%, 78% 12%;
+  }
+
+  100% {
+    background-position: 100% 55%, 100% 50%, 86% 0%;
   }
 }
 
