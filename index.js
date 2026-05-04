@@ -23,12 +23,12 @@ const projects = [
     tools: "//Made with TouchDesigner & MediaPipe Plugin//"
   },
   {
-    title: "house of diagrams",
-    media: "hod.mov",
-    type: "video",
+    title: "[Mixed Media Works]",
+    media: "mixed-media-works.png",
+    type: "image",
     description:
-      "A graphics engineering study using diagrams as a way to explain imaginary systems. It mixes precise layout thinking with expressive motion and modular composition.",
-    tools: "graphics engineering, systems diagrams, animation"
+      "Consolidated as an Instagram-style post featuring the emperor penguin first, then the polar bear, then the snow leopard.",
+    tools: "//digital art, photography, photoshop//"
   },
   {
     title: "[Persian Rugs - Fractals-Based Graphics]",
