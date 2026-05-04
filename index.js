@@ -5,7 +5,7 @@ const projects = [
     type: "video",
     description:
       "Learned how to visualize strange attractors by using GLSL to define the movement of points through a system of three ordinary differential equations to create the attractor shape, showing the path of a point simulation tracing out the Thomas strange attractor. GLSL code can be modified to visualize any strange attractor by changing the equations.",
-    tools: "//made with TouchDesigner//"
+    tools: "//Made with TouchDesigner//"
   },
   {
     title: "[Conceptual 3D Models]",
@@ -28,27 +28,27 @@ const projects = [
     mediaItems: [
       {
         src: "mixed-media-emperor-penguin.png",
-        alt: "Emperor penguin mixed media artwork"
+        alt: "Emperor Penguin mixed media artwork"
       },
       {
         src: "mixed-media-polar-bear.jpg",
-        alt: "Polar bear mixed media artwork"
+        alt: "Polar Bear mixed media artwork"
       },
       {
         src: "mixed-media-snow-leopard.jpg",
-        alt: "Snow leopard mixed media artwork"
+        alt: "Snow Leopard mixed media artwork"
       }
     ],
     description: "",
-    tools: "//digital art, photography, photoshop//"
+    tools: "//Digital Art, Photography, Photoshop//"
   },
   {
     title: "[Persian Rugs - Fractals-Based Graphics]",
     media: "persian-rugs-fractals.png",
     type: "image",
     description:
-      "The goals of this project were to emulate the look of Persian rugs using recursively-defined shapes and parameterize geometric patterns.\n\nSlider tools control shape parameters--recursion depth (complexity) and number of sides (roundness)--to form different \"rugs\".\n\nUsed shapes based on Koch Snowflakes and Sierpinski Triangles to create geometric motifs with traditional medallion-style rug layout.\n\nModified Deterministic Fractals, creating unique patterns:\n\n-Koch: retained fractal generator of the snowflake (equilateral triangle) but defined the initiator shape as a parameter\n-Sierpinski: Fixed scaling factor of 0.5 for all n-flakes; child shape centered at vertex",
-    tools: "//coded in Python on Visual Studio Code//\nhttps://github.com/anyajain0/persianrugfractals\n//complexity capped at 5 and roundness capped at 7 because of turtle graphics rendering limitations//"
+      "The goals of this project were to emulate the look of Persian rugs using recursively-defined shapes and parameterize geometric patterns.\n\nSlider tools control shape parameters--recursion depth (complexity) and number of sides (roundness)--to form different \"rugs.\"\n\nUsed shapes based on Koch Snowflakes and Sierpinski Triangles to create geometric motifs with a traditional medallion-style rug layout.\n\nModified Deterministic Fractals, creating unique patterns:\n\n-Koch: Retained the fractal generator of the snowflake (equilateral triangle) but defined the initiator shape as a parameter\n-Sierpinski: Fixed the scaling factor at 0.5 for all n-flakes; child shape centered at vertex",
+    tools: "//Coded in Python on Visual Studio Code//\nhttps://github.com/anyajain0/persianrugfractals\n//Complexity capped at 5 and Roundness capped at 7 because of Turtle graphics rendering limitations//"
   }
 ];
 
