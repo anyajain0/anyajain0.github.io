@@ -200,12 +200,14 @@ nav a:focus-visible::after,
   width: min(100%, 348px);
   aspect-ratio: 1;
   margin: 0;
-  padding: 10px;
+  padding: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 42% 58% 52% 48% / 41% 37% 63% 59%;
+  border-radius: 38% 62% 58% 42% / 46% 34% 66% 54%;
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.28)),
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.56), transparent 24%),
+    radial-gradient(circle at 76% 78%, rgba(159, 177, 255, 0.18), transparent 28%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.24)),
     linear-gradient(220deg, rgba(159, 177, 255, 0.18), rgba(255, 78, 216, 0.08));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.96),
@@ -213,7 +215,8 @@ nav a:focus-visible::after,
     0 18px 36px rgba(48, 62, 105, 0.14);
   backdrop-filter: blur(14px) saturate(1.18);
   -webkit-backdrop-filter: blur(14px) saturate(1.18);
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  animation: liquidBlobFrame 11s ease-in-out infinite alternate;
+  transition: box-shadow 180ms ease;
 }
 
 .portrait-frame:hover,
@@ -229,10 +232,26 @@ nav a:focus-visible::after,
   content: "";
   inset: 9px;
   z-index: 1;
-  border-radius: 45% 55% 50% 50% / 38% 42% 58% 62%;
+  border-radius: 41% 59% 54% 46% / 36% 44% 56% 64%;
   background:
-    linear-gradient(125deg, rgba(255, 255, 255, 0.34), transparent 28%),
-    linear-gradient(210deg, rgba(255, 255, 255, 0.16), transparent 46%);
+    linear-gradient(125deg, rgba(255, 255, 255, 0.38), transparent 24%),
+    linear-gradient(210deg, rgba(255, 255, 255, 0.18), transparent 46%),
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.2), transparent 20%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: liquidBlobInner 9s ease-in-out infinite alternate;
+}
+
+.portrait-frame::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.44),
+    inset 12px 10px 24px rgba(255, 255, 255, 0.12),
+    inset -14px -18px 28px rgba(40, 73, 150, 0.08);
   pointer-events: none;
 }
 
@@ -246,7 +265,7 @@ nav a:focus-visible::after,
   object-fit: cover;
   object-position: 39% 46%;
   border: 0;
-  border-radius: 44% 56% 50% 50% / 38% 40% 60% 62%;
+  border-radius: 40% 60% 57% 43% / 45% 35% 65% 55%;
 }
 
 .intro-panel {
@@ -261,7 +280,7 @@ nav a:focus-visible::after,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 9px;
   max-width: 100%;
   min-height: 112px;
   margin-bottom: 6px;
@@ -272,7 +291,7 @@ nav a:focus-visible::after,
   flex: 0 0 auto;
   width: 92px;
   height: 82px;
-  margin-right: -1px;
+  margin-right: -4px;
   overflow: visible;
 }
 
@@ -294,11 +313,60 @@ nav a:focus-visible::after,
   line-height: 1.2;
   font-weight: 700;
   letter-spacing: 0;
-  background: none;
-  color: var(--blue);
+  background:
+    linear-gradient(110deg, #1b55f8 0%, #6863b8 20%, #ff7d5f 40%, #ff2ba8 60%, #8a41df 80%, #285cff 100%);
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   overflow: visible;
   -webkit-text-stroke: 0;
-  text-shadow: none;
+  text-shadow: 0 6px 14px rgba(48, 62, 105, 0.08);
+  animation: flowyNameGradient 8s ease-in-out infinite alternate;
+}
+
+@keyframes flowyNameGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 55% 42%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes liquidBlobFrame {
+  0% {
+    border-radius: 38% 62% 58% 42% / 46% 34% 66% 54%;
+    transform: translateY(0) rotate(-1.4deg);
+  }
+
+  50% {
+    border-radius: 44% 56% 50% 50% / 34% 47% 53% 66%;
+    transform: translateY(-3px) rotate(0.6deg);
+  }
+
+  100% {
+    border-radius: 36% 64% 54% 46% / 49% 33% 67% 51%;
+    transform: translateY(2px) rotate(1.2deg);
+  }
+}
+
+@keyframes liquidBlobInner {
+  0% {
+    border-radius: 41% 59% 54% 46% / 36% 44% 56% 64%;
+    transform: scale(1) translate(0, 0);
+  }
+
+  100% {
+    border-radius: 47% 53% 49% 51% / 42% 35% 65% 58%;
+    transform: scale(0.992) translate(3px, -2px);
+  }
 }
 
 .definition {
