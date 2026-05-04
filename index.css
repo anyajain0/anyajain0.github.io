@@ -303,15 +303,6 @@ nav a:focus-visible::after,
   overflow: visible;
   -webkit-text-stroke: 0;
   text-shadow: none;
-  transition: color 160ms ease, background 160ms ease;
-}
-
-.title-lockup:hover .gradient-name,
-.title-lockup:focus-within .gradient-name {
-  background: linear-gradient(90deg, #114cff 0%, #3f5fe7 15%, #f08a63 34%, #ff42a0 50%, #f08a63 66%, #3f5fe7 85%, #114cff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .definition {
@@ -319,7 +310,7 @@ nav a:focus-visible::after,
   margin: 0 auto 32px;
   color: #050505;
   line-height: 1.38;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 12px;
 }
 
@@ -452,7 +443,7 @@ nav a:focus-visible::after,
 }
 
 .project-dialog {
-  width: min(860px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 24px));
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 0;
@@ -467,7 +458,7 @@ nav a:focus-visible::after,
 
 .project-dialog[open] {
   display: grid;
-  grid-template-columns: minmax(260px, 0.82fr) 1fr;
+  grid-template-columns: minmax(440px, 1.3fr) minmax(320px, 0.9fr);
 }
 
 .close-dialog {
@@ -486,7 +477,7 @@ nav a:focus-visible::after,
 }
 
 .dialog-media {
-  min-height: 440px;
+  min-height: 680px;
   background: #faf7fb;
 }
 
@@ -643,8 +634,8 @@ nav a:focus-visible::after,
   }
 
   .dialog-media {
-    min-height: 320px;
-    max-height: 54svh;
+    min-height: 460px;
+    max-height: 66svh;
   }
 
   .media-carousel {
@@ -720,5 +711,9 @@ nav a:focus-visible::after,
 
   .dialog-media img {
     padding: 20px;
+  }
+
+  .dialog-media {
+    min-height: 360px;
   }
 }
