@@ -66,18 +66,18 @@ nav a[aria-current="page"],
 }
 
 .home-page {
-  width: min(calc(100% - 72px), var(--max));
+  width: min(calc(100% - 96px), var(--max));
   margin: 0 auto;
 }
 
 .home-layout {
   display: grid;
-  grid-template-columns: clamp(420px, 31vw, 560px) clamp(520px, 35vw, 650px);
-  gap: clamp(120px, 14vw, 240px);
+  grid-template-columns: clamp(320px, 27vw, 430px) clamp(620px, 43vw, 760px);
+  gap: clamp(84px, 10vw, 170px);
   align-items: center;
   justify-content: center;
   min-height: calc(100svh - 64px);
-  padding: 86px 0 110px;
+  padding: 78px 0 96px;
 }
 
 .portrait-wrap {
@@ -97,7 +97,7 @@ nav a[aria-current="page"],
 
 .portrait-frame {
   display: block;
-  width: min(100%, 560px);
+  width: min(100%, 430px);
   aspect-ratio: 1;
   margin: 0;
   background: #f7f8fb;
@@ -115,39 +115,24 @@ nav a[aria-current="page"],
 
 .intro-panel {
   width: 100%;
-  max-width: 650px;
+  max-width: 760px;
   justify-self: start;
   text-align: center;
 }
 
 .title-lockup {
-  --logo-x: 0px;
-  --logo-y: 0px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 14px;
+  max-width: 100%;
+  margin-bottom: 28px;
 }
 
 .logo-mark {
-  position: relative;
   flex: 0 0 auto;
-  width: 70px;
-  height: 54px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transform: translate(var(--logo-x), var(--logo-y));
-  transition: transform 180ms ease;
-}
-
-.logo-mark:hover,
-.logo-mark:focus-visible,
-.logo-mark.is-active {
-  outline: none;
-  transform: translate(var(--logo-x), var(--logo-y)) rotate(-3deg);
+  width: 92px;
+  height: 72px;
 }
 
 .logo-image {
@@ -159,8 +144,8 @@ nav a[aria-current="page"],
 
 .gradient-name {
   margin: 0;
-  font-size: 16px;
-  line-height: 1;
+  font-size: 48px;
+  line-height: 1.08;
   font-weight: 700;
   letter-spacing: 0;
   background: linear-gradient(90deg, #174fff 0%, #6863b8 25%, #f07a58 42%, #ff2ba8 65%, #1b55f8 100%);
@@ -171,7 +156,7 @@ nav a[aria-current="page"],
 
 .definition {
   max-width: 520px;
-  margin: 0 auto 28px;
+  margin: 0 auto 30px;
   color: #050505;
   line-height: 1.38;
   font-weight: 700;
@@ -179,7 +164,7 @@ nav a[aria-current="page"],
 
 .interests {
   max-width: 510px;
-  margin: 0 auto 32px;
+  margin: 0 auto 34px;
   color: var(--pink);
   line-height: 1.35;
 }
@@ -202,7 +187,7 @@ nav a[aria-current="page"],
   justify-content: center;
   gap: 48px;
   flex-wrap: wrap;
-  margin: 34px 0 24px;
+  margin: 36px 0 26px;
 }
 
 .link-row a {
@@ -403,8 +388,8 @@ nav a[aria-current="page"],
 
 @media (max-width: 1120px) {
   .home-layout {
-    grid-template-columns: minmax(320px, 420px) minmax(390px, 560px);
-    gap: clamp(56px, 8vw, 88px);
+    grid-template-columns: minmax(280px, 360px) minmax(520px, 620px);
+    gap: clamp(44px, 6vw, 72px);
   }
 }
 
@@ -468,8 +453,12 @@ nav a[aria-current="page"],
   }
 
   .logo-mark {
-    width: 50px;
-    height: 42px;
+    width: 48px;
+    height: 38px;
+  }
+
+  .gradient-name {
+    font-size: 42px;
   }
 
   .section-heading {

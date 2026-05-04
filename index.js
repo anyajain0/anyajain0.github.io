@@ -46,33 +46,6 @@ const projects = [
   }
 ];
 
-const logoMark = document.querySelector(".logo-mark");
-
-function bindPointerMotion(element, prefix, distance) {
-  if (!element) return;
-
-  element.addEventListener("pointermove", (event) => {
-    const box = element.getBoundingClientRect();
-    const x = ((event.clientX - box.left) / box.width - 0.5) * 10;
-    const y = ((event.clientY - box.top) / box.height - 0.5) * 10;
-
-    element.style.setProperty(`--${prefix}-x`, `${(x / 10) * distance}px`);
-    element.style.setProperty(`--${prefix}-y`, `${(y / 10) * distance}px`);
-  });
-
-  element.addEventListener("pointerleave", () => {
-    element.style.setProperty(`--${prefix}-x`, "0px");
-    element.style.setProperty(`--${prefix}-y`, "0px");
-    element.classList.remove("is-active");
-  });
-
-  element.addEventListener("click", () => {
-    element.classList.toggle("is-active");
-  });
-}
-
-bindPointerMotion(logoMark, "logo", 5);
-
 const dialog = document.querySelector("#project-dialog");
 const dialogMedia = document.querySelector("#dialog-media");
 const dialogTitle = document.querySelector("#dialog-title");
