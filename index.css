@@ -527,6 +527,7 @@ nav a:focus-visible::after,
 
 .dialog-copy p {
   margin-bottom: 24px;
+  white-space: pre-line;
 }
 
 .project-meta {
@@ -546,6 +547,7 @@ nav a:focus-visible::after,
 
 .project-meta dd {
   margin: 0;
+  white-space: pre-line;
 }
 
 @media (max-width: 1120px) {

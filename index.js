@@ -32,12 +32,12 @@ const projects = [
     tools: "graphics engineering, systems diagrams, animation"
   },
   {
-    title: "pretty mug archive",
-    media: "noback.gif",
+    title: "[Persian Rugs - Fractals-Based Graphics]",
+    media: "persian-rugs-fractals.png",
     type: "image",
     description:
-      "A growing catalog of small domestic objects, starting with mugs and vessels. The project treats everyday forms as tiny sculptures with memory, personality, and ritual.",
-    tools: "object study, collection design, visual identity"
+      "The goals of this project were to emulate the look of Persian rugs using recursively-defined shapes and parameterize geometric patterns.\n\nSlider tools control shape parameters--recursion depth (complexity) and number of sides (roundness)--to form different \"rugs\".\n\nUsed shapes based on Koch Snowflakes and Sierpinski Triangles to create geometric motifs with traditional medallion-style rug layout.\n\nModified Deterministic Fractals, creating unique patterns:\n\n-Koch: retained fractal generator of the snowflake (equilateral triangle) but defined the initiator shape as a parameter\n-Sierpinski: Fixed scaling factor of 0.5 for all n-flakes; child shape centered at vertex",
+    tools: "//coded in Python on Visual Studio Code//\nhttps://github.com/anyajain0/persianrugfractals\n//complexity capped at 5 and roundness capped at 7 because of turtle graphics rendering limitations//"
   }
 ];
 
