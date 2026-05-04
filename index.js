@@ -47,7 +47,6 @@ const projects = [
 ];
 
 const logoMark = document.querySelector(".logo-mark");
-const portraitButton = document.querySelector(".portrait-button");
 
 function bindPointerMotion(element, prefix, distance) {
   if (!element) return;
@@ -73,7 +72,6 @@ function bindPointerMotion(element, prefix, distance) {
 }
 
 bindPointerMotion(logoMark, "logo", 5);
-bindPointerMotion(portraitButton, "photo", 7);
 
 const dialog = document.querySelector("#project-dialog");
 const dialogMedia = document.querySelector("#dialog-media");

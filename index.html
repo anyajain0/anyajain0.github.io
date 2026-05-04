@@ -22,10 +22,9 @@
     <section class="home-layout" aria-labelledby="home-title">
       <div class="portrait-wrap">
         <p class="side-note">//my name means limitless:)))//</p>
-        <button class="portrait-button" type="button" aria-label="Animate headshot">
+        <figure class="portrait-frame">
           <img src="img/anya-headshot.jpg" alt="Anya Jain wearing white sunglasses against a blue sky" class="portrait">
-          <span class="liquid-sheen" aria-hidden="true"></span>
-        </button>
+        </figure>
       </div>
 
       <div class="intro-panel">
@@ -52,15 +51,6 @@
       </div>
     </section>
   </main>
-
-  <svg class="filter-defs" aria-hidden="true" focusable="false">
-    <filter id="liquidify" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.045" numOctaves="2" seed="8" result="noise">
-        <animate attributeName="baseFrequency" dur="2.8s" values="0.012 0.038;0.034 0.018;0.012 0.038" repeatCount="indefinite" />
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="13" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </svg>
 
   <script src="index.js"></script>
 </body>
