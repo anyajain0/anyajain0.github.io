@@ -75,7 +75,8 @@ document.querySelectorAll(".project-tile").forEach((tile) => {
     video.currentTime = 0;
   });
 
-  tile.addEventListener("click", () => {
+  tile.addEventListener("click", (event) => {
+    event.preventDefault();
     openProject(projects[Number(tile.dataset.project)]);
   });
 });
@@ -91,14 +92,20 @@ function openProject(project, options = {}) {
   dialogDescription.textContent = project.description;
   dialogTools.textContent = project.tools;
 
-  if (updateUrl) {
-    setProjectUrl(project.slug);
-  }
-
   if (typeof dialog.showModal === "function") {
-    dialog.showModal();
+    if (!dialog.open) {
+      try {
+        dialog.showModal();
+      } catch {
+        dialog.setAttribute("open", "");
+      }
+    }
   } else {
     dialog.setAttribute("open", "");
+  }
+
+  if (updateUrl) {
+    setProjectUrl(project.slug);
   }
 }
 
@@ -113,8 +120,12 @@ function closeProject(options = {}) {
     clearProjectUrl();
   }
 
-  if (typeof dialog.close === "function") {
-    dialog.close();
+  if (typeof dialog.close === "function" && dialog.open) {
+    try {
+      dialog.close();
+    } catch {
+      dialog.removeAttribute("open");
+    }
   } else {
     dialog.removeAttribute("open");
   }
