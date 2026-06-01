@@ -405,7 +405,6 @@ nav a:focus-visible::after,
   color: var(--ink);
   font: inherit;
   text-align: left;
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -594,87 +593,6 @@ nav a:focus-visible::after,
   white-space: pre-line;
 }
 
-.project-detail-page {
-  width: min(calc(100% - 44px), 1120px);
-  margin: 0 auto;
-  padding: 70px 0 92px;
-}
-
-.project-detail {
-  display: grid;
-  grid-template-columns: minmax(440px, 1.3fr) minmax(320px, 0.9fr);
-  border: 1px solid var(--line);
-  background: var(--paper);
-}
-
-.project-detail-media {
-  min-height: 680px;
-  background: #faf7fb;
-}
-
-.project-detail-media video,
-.project-detail-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.project-detail-media img {
-  padding: 34px;
-}
-
-.project-detail-copy {
-  padding: 34px;
-}
-
-.project-detail-copy h1 {
-  margin: 0 0 18px;
-  color: var(--blue);
-  font-size: 11px;
-  line-height: 1.55;
-}
-
-.project-detail-copy p {
-  margin: 0 0 24px;
-  color: var(--muted);
-  white-space: pre-line;
-}
-
-.project-back-link {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 18px;
-  padding: 5px 12px;
-  border: 1px solid var(--glass-line);
-  color: var(--nav);
-  font-weight: 700;
-  text-decoration: none;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.16)),
-    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.9), transparent 34%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.98),
-    inset 0 -1px 0 rgba(40, 55, 94, 0.06),
-    0 16px 34px var(--glass-shadow);
-}
-
-.project-gallery-stack {
-  display: grid;
-  gap: 18px;
-  padding: 24px;
-}
-
-.project-gallery-stack figure {
-  margin: 0;
-}
-
-.project-gallery-stack img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  padding: 0;
-}
 
 @media (max-width: 1120px) {
   .home-layout {
@@ -716,16 +634,7 @@ nav a:focus-visible::after,
     grid-template-columns: 1fr;
   }
 
-  .project-detail {
-    grid-template-columns: 1fr;
-  }
-
   .dialog-media {
-    min-height: 460px;
-    max-height: 66svh;
-  }
-
-  .project-detail-media {
     min-height: 460px;
     max-height: 66svh;
   }
@@ -809,19 +718,4 @@ nav a:focus-visible::after,
     min-height: 360px;
   }
 
-  .project-detail-page {
-    width: min(calc(100% - 28px), 1120px);
-  }
-
-  .project-detail-copy {
-    padding: 26px 22px;
-  }
-
-  .project-detail-media {
-    min-height: 360px;
-  }
-
-  .project-detail-media img {
-    padding: 20px;
-  }
 }
