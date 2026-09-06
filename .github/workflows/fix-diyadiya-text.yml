@@ -1,0 +1,34 @@
+name: Fix DiyaDiya text clipping
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-diyadiya-text.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch DiyaDiya body text box
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = '<div class="slide-text" style="left:5.074366%;top:14.676974%;width:54.183071%;height:9.694882%;padding:1.249795% 1.249795% 1.249795% 1.249795%;">'
+          new = '<div class="slide-text" style="left:5.074366%;top:14.676974%;width:54.183071%;height:14.5%;padding:1.249795% 1.249795% 1.249795% 1.249795%;overflow:visible;">'
+          if old not in s:
+              raise SystemExit('Target text box not found; no changes made')
+          p.write_text(s.replace(old, new, 1))
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix DiyaDiya text clipping'
+          git push
