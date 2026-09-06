@@ -1,0 +1,67 @@
+name: Publish portfolio assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-portfolio-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download original portfolio assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p img/portfolio-slides img/figma-home
+
+          # Current Figma homepage artwork + polygon vectors (downloaded as real repo files)
+          curl -L --fail --retry 3 -o img/figma-home/figure-1.png 'https://www.figma.com/api/mcp/asset/f9dbb623-f99e-40b2-9035-a8735dd843ed.png'
+          curl -L --fail --retry 3 -o img/figma-home/figure-2.png 'https://www.figma.com/api/mcp/asset/1bf21b5b-48d0-4875-bcd5-f23163e9fb2a.png'
+          curl -L --fail --retry 3 -o img/figma-home/figure-3.png 'https://www.figma.com/api/mcp/asset/e72337d9-9c89-41d9-9f1a-baa5d8f867ca.png'
+          curl -L --fail --retry 3 -o img/figma-home/figure-4.png 'https://www.figma.com/api/mcp/asset/295b8721-5002-405d-8989-a31dcde8bfca.png'
+          curl -L --fail --retry 3 -o img/figma-home/polygon-1.svg 'https://www.figma.com/api/mcp/asset/1042942f-20ad-45b6-afc7-ae1518b5ba17.svg'
+          curl -L --fail --retry 3 -o img/figma-home/polygon-2.svg 'https://www.figma.com/api/mcp/asset/9b2b68e2-5793-4b20-9a92-66dba03425c9.svg'
+          curl -L --fail --retry 3 -o img/figma-home/polygon-3.svg 'https://www.figma.com/api/mcp/asset/7908b903-61da-43a8-86e8-17d267d54d79.svg'
+          curl -L --fail --retry 3 -o img/figma-home/polygon-4.svg 'https://www.figma.com/api/mcp/asset/71c4b79b-02bd-42fd-8819-fe7456174e29.svg'
+
+          # Original image binaries from the Google Slides deck (not screenshots)
+          curl -L --fail --retry 3 -o img/portfolio-slides/image3.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUeW2kg4bAF0pTHkXvNEp-3X3CFOUrussuLtuK2f29gF3TX8cjWI8fuUOoTPvSIGOmkEHCoXSYHh4cIk50PQjl-WzI9HA7bEcg_y5g8Ov-GvyjKvaPdI57k7lakxSPulmWltGFnFQUAWXfEx-LQxoHAAR4QKAioQeIXpDTLaCUca6bPkPTc=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image16.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUd7ufYmS5LJA4HloR6-622aO_pzGHT_lf6gunezVNa5pqvNxD-VSnUplM59l2Y3b_QzF914d3axXL_uMa3a_q2B7nlw6DnH2j_r7o3xSjtAHwlxeT_TgEsM6-n7OvjYxGrSNrgaj6OeyscNyQCDp3fY9JWW0hdRKpMwX2njIqXY6JA9bMQ=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image14.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUc-e9xgnZ2hu0Xs2j17Vz1n9XAPNVnb6iQQjFazvSLCATyqfpyzHI0RgET0h9PU6NOnr2fkHGB51NXk-yEUkgcVnPjINliCp7qImieIfHj6w8L-8l1tFLP3tprGJS8DeFelC7wA5VJuiVFqxV9mKbBqXC4Ft4zzZSL36ULd8vlN1ekf50w=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image8.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUe2EcBO9BGjal88f__veF4OrxK6K4eQblUi0Z4fe0hYMwJu4FeNZXIuFqIlCL908e3wLIpcLtHVoitUDRims7NZkTtG6QOrKdAwJ0xukRi4EIkOspJ0ZQKQLlqfSsPeSH5Hi-jV-4ILplhV6g0If1dDRxvB5FRj879wrcCTpFN6u_4rVTc=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image5.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfPv9RsEbpzSiFEjYjN6x7yfaB6uFxQfJVmk0wnAIzbb01BArdu63Q9dQ-IoWdMbUQcqvVjd6WQug_IQ5fCyItleBd8a0vYGMVBnl1M_eFXj5Vbice9xXz08xWvzZGUTCL8UZe0HSL3C_dPdZTU6tg70HujFFmSY6o05HpdGKb9t4R7=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image10.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdaNmWe-ZfMMHManomRTnmzBxpUxAOMDgktCMftB9dBD4I5vJWdYm9eoNDOtGsuytCQD2iBFP87SPPzKslNROMDgF-Gmdebt2EhP1kmdZ_hKh_IwsDqOboFsZmbrfMahR4u6ofnyqBWwtntDm1tGvG0Rcj_gxOistp8ypQhbGC9LheaGKQ=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image15.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUc0K11FjATlH2jPLIR2W0PrbjGzALIvrKV9idWYxVDcO2In1ApdXxPI-fh5ThZkM34dUgNHMA2NxYyITY1Hj6NCvV8vjWVNoRg4sl2U6_gPpuyNz0G4SzYIgTwRfYKg48sCJ5HYkn2xRRgR1JTdlVpgn0d6H0OnSH7wzN9x8Zz8bpQo_U4=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+
+          curl -L --fail --retry 3 -o img/portfolio-slides/image18.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdvmJKbv52NNW7aRYEx6Kyf-VBvS5vCR8vaXy4HD88j8p_yBhUcFK1Q6y7XgAUFHls3Wy7IXTSuukKGGiPnyOUK9IFYBGYL4hCqlJX70UHDl6ktWT2zM5s1ES0zJBrxSawu3TusQ-XMtPCRuMGm47tm4-qLtJl2ejrGEu1B56AKFXauWTI=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image17.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdnlpNYaU-RpMz6eNrLQoML3LibIx36emGmDG_j7hNf3S_1gJVHYD09n-ji_7Co5AMLA54f6q7KWDmvvvLu_PEhOwETP2VjQlU3Fhil6hbxIJk7CjoAaTBMY_aGXTh5YWEgAcXni7t4FruOy8LcOBcAl8FEkFwGfgTKHxSiOcbzyiPH=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image20.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfkyuwfKUioVL7yCB9KYE8Ro3f0nEfp4Oi2ceYdpk0uWmoYsJFfer4uHDBZw7cf1OgSWChtWqUPKlIpYyx66mRJ0YxYWlXYKM6d8txx0ErQFt9NaCZ93iJxissjpKT-5jr5zDOjiZpgWWuoJm9xzc3NYnD9YWZgDY0C5ohmB-i6JEK8TzA=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image1.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUe11dpg4Ubjkj8NRD-0uKuoT1tGnGaLH-iePHZt8ecvMsBW9eL_3j5Gocti7bSBDFq4lRD5G1NDKLzc_LnD2ImtS-K_f7FC66VXYFXbDfTjBX_k21CAoh0biw_9ioB9dTlLQQrRu8V6X98vDoU09CFhyyOJ_JhsQBxvedalTn9ipqoj=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+
+          curl -L --fail --retry 3 -o img/portfolio-slides/image6.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUemQoUFH7Qia_XR9TQn8CwqbA5d0Ih_mgyIhPwX5pDkChscSqmps3cfvFMKYg5wzTyPp0qW7nQn-ZZDCJqFDe0p7WVxLRXdTu51TpbzvYtO3w5xfH8W_f5k0DXhR0xYPVdbWjqr0PS9nftU2vem9lW4T2SBISRhu4mYSrPMtJKn9ewe=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image11.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUegDF7uau1KWuYYF9zY_aIeYVVvxYe3m3m44GrSvV7Bcpl4Ou6XwRXHfnhDuHoeZ1qzKBnbEsu89kSRD7Inzz2QEcDs7ypJ01JmiR85TawWIR78GoNk35ceL2KkgRh4Q1QDCNo23A_JU1g8MWTo9i5ZzLY9a3vZqwzNNExCbHVRlbb9Q_s=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image12.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUfl4tm_4XAwEFTstoUgkmMmafRjBttrAIeeNeEFUVH2zNOIeg4ygLIrH7eFpnfpo4t__dlHdADAGN0__ZFdTk3opY6Yj-wUDC-P-HyLRr4DP4Bek4s4XfWNHeSlpUaMZWvs04EnVxEqykGZvTtztatjFuPc-yg5cD8RoYz3UZq48WJ12LQ=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image13.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUcojqRHzl10KvJPBYtPdWivX95Hrd614sArvdoMse0PcamflB-sZ3o-28WAP-1H7b4EqrPmkT98suZ8rTeWvnY6wVP3NaZX_3oesWRIze1E2RGUkpFDXybzd6iWzf1UUVFdyAChj-CHUI9P4HuYbE7HKgJCv1UL718r27E2sHZWeHSV=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+
+          curl -L --fail --retry 3 -o img/portfolio-slides/image21.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUega_hh6TLeoXLzZTDeZpel4wMfwPgJ79U2lruiBF1yWv_whTE-LPkPggR8-3OW8d8lsJN02mZLT21J9CoAMEslx7oB0KUMje0ur-Jw4ud059XQ2e5YqJGh200yhLXtVLcVpbmDnKrTp1PUgm6wZoCAvyTUj5sp49-gAkA76j6ZkRpPNjw=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image22.png 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdYTIKNxtu_X-5PR2o5p4GmfhuUYiOMJ6ceQbk3v31pk7p1LJVhg5kKXB7YHuXijVnw46p36vJ65bsAMqrhvI433yz3Rgkizv4zGHgmcsDcCnkM37IF0JArwWRBj3LGNauLAfw2GfsMGELWMorloapsS4OSp2unNcNdpRlkkKVp108iMIo=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+          curl -L --fail --retry 3 -o img/portfolio-slides/image19.jpg 'https://lh7-rt.googleusercontent.com/slidesz/AGV_vUdy_GVTReKYF_2M1YaSsnWRtYz1moCgfHKgiZWXWl9X9jYm8k0FtKiqYZSrK9mtrs8KGlcbTZX9BYCZUr4R9IKAbJyrFXh-LIzyN5Q6rfRQvqF2ehNEplE3_1HcsWmWK2izcr0oi7nvq0ae7cqjfAxfmhekUnZUkdMaCTqUfWOa_ssow4s=s2048?key=7vYarmqgfiP-AsVSPnd8zQ'
+
+      - name: Commit downloaded assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add img/portfolio-slides img/figma-home/figure-*.png img/figma-home/polygon-*.svg
+          if git diff --cached --quiet; then
+            echo 'No asset changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Add portfolio assets from Slides and Figma'
+          git push
