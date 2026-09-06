@@ -1,37 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Anya Jain — selected works and design portfolio.">
-  <title>Anya Jain</title>
-  <link rel="icon" type="image/png" href="img/tab-thumbnail.png">
-  <link rel="stylesheet" href="figma-home.css?v=20260905">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anya Jain</title>
+<link rel="icon" type="image/png" href="img/tab-thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#fff;color:#000}
+body{font-family:"Lexend",Arial,sans-serif}
+.stage{position:relative;width:100%;min-height:100vh;overflow:hidden;background:#fff}
+.canvas{position:relative;width:100vw;height:815px;transform-origin:top left}
+.label{position:absolute;left:65px;top:70px;margin:0;font-size:10px;font-weight:300;line-height:normal}
+.identity{position:absolute;right:65px;top:33px;width:265px;text-align:right}
+.identity-name{display:block;color:#000;font-size:18px;font-weight:300;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;line-height:normal}
+.identity-tagline{margin:0;font-size:10px;font-weight:200;line-height:normal}
+.identity-school{margin:1px 0 0;font-size:10px;font-weight:200;line-height:normal}
+
+.figure{position:absolute;padding:0;border:0;background:transparent;appearance:none;-webkit-appearance:none;pointer-events:none}
+.figure:focus-visible{outline:none;z-index:20}
+.figure img{position:absolute;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none;background:transparent}
+.figure .hit{
+  position:absolute;
+  z-index:30;
+  display:block;
+  background:transparent;
+  pointer-events:auto;
+  cursor:pointer;
+}
+/* Tight clickable silhouettes — no full rectangular button box */
+.f1 .hit{left:2%;top:1%;width:91%;height:98%;clip-path:polygon(10% 2%,72% 0,100% 22%,98% 72%,78% 100%,35% 100%,8% 94%,0 56%,2% 20%);}
+.f2 .hit{left:6%;top:0;width:92%;height:99%;clip-path:polygon(13% 0,74% 0,100% 25%,98% 75%,79% 100%,35% 100%,7% 92%,0 48%,2% 18%);}
+.f3 .hit{left:2%;top:2%;width:95%;height:97%;clip-path:polygon(10% 0,76% 2%,100% 28%,98% 78%,78% 100%,31% 100%,5% 91%,0 45%,3% 16%);}
+.f4 .hit{left:1%;top:1%;width:97%;height:98%;clip-path:polygon(8% 2%,77% 0,100% 25%,98% 76%,76% 100%,28% 100%,4% 90%,0 42%,3% 14%);}
+.figure:focus-visible{outline:none}
+
+.figure .art{inset:0;width:100%;height:100%;object-fit:cover;transition:transform .15s ease;transform-origin:center}
+.figure:has(.hit:hover) .art,.figure:focus-visible .art{transform:scale(1.035)}
+.f1{left:42px;top:95px;width:179px;height:201px;z-index:3} .f1 .poly{left:28px;top:35px;width:126px;height:135px}
+.f2{left:154px;top:80px;width:170px;height:189px;z-index:4} .f2 .poly{left:13px;top:25px;width:158px;height:158px}
+.f3{left:274px;top:150px;width:154px;height:171px;z-index:6} .f3 .poly{left:18px;top:51px;width:120px;height:92px}
+.f4{left:376px;top:107px;width:142px;height:163px;z-index:5} .f4 .poly{left:0;top:12px;width:135px;height:134px}
+
+.modal{position:fixed;inset:0;z-index:9999;display:none;background:rgba(255,255,255,.96)}
+.modal.open{display:block}
+.modal-inner{position:absolute;inset:0;display:grid;place-items:center;padding:36px 50px}
+.page-wrap{width:min(88vw,calc(100dvh - 96px),820px);height:auto;aspect-ratio:1/1;background:#fff;overflow:hidden;box-shadow:none}
+.project-page{position:relative;width:100%;height:100%;aspect-ratio:1;container-type:inline-size;background:#fff;overflow:hidden}
+.slide-imgbox{position:absolute;overflow:hidden}
+.slide-imgbox img{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none}
+.slide-shape{position:absolute}
+.slide-text{position:absolute;font-family:"Lexend",Arial,sans-serif;overflow:hidden;line-height:1}
+.slide-p{margin:0;padding:0;line-height:1;min-height:1em}
+.slide-text a{color:inherit}
+.close{position:fixed;z-index:10001;top:18px;right:22px;width:48px;height:48px;border:0;background:transparent;color:#000;font-family:Arial,sans-serif;font-size:38px;font-weight:300;line-height:42px;cursor:pointer}
+.counter{position:fixed;z-index:10001;bottom:12px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:300}
+
+@media(max-width:1280px){
+ .canvas{width:1280px;transform:scale(calc(100vw / 1280));height:815px}
+ .stage{min-height:calc(815px * (100vw / 1280))}
+}
+@media(max-width:700px){
+ .modal-inner{position:absolute;inset:0;display:grid;place-items:center;padding:36px 50px}
+ .page-wrap{width:min(88vw,calc(100dvh - 96px),820px);height:auto;aspect-ratio:1/1;background:#fff;overflow:hidden;box-shadow:none}
+ .close{top:7px;right:7px}
+ }
+</style>
 </head>
 <body>
-  <main class="portfolio-home">
-    <p class="home-label">Selected Works</p>
+<div class="stage">
+<main class="canvas">
+<p class="label">Selected Works</p>
+<header class="identity">
+<a class="identity-name" href="https://linktr.ee/anyajain" target="_blank" rel="noreferrer">Anya Jain</a>
+<p class="identity-tagline">To be creative is to be curious</p>
+<p class="identity-school">Design | Media Arts @ UCLA</p>
+</header>
+<button class="figure f1" data-page="1" aria-label="Open project 1"><span class="hit" aria-hidden="true"></span><img class="art" src="img/figma-home/figure-1.png" alt=""><img class="poly" src="img/figma-home/polygon-1.svg" alt=""></button>
+<button class="figure f2" data-page="2" aria-label="Open project 2"><span class="hit" aria-hidden="true"></span><img class="art" src="img/figma-home/figure-2.png" alt=""><img class="poly" src="img/figma-home/polygon-2.svg" alt=""></button>
+<button class="figure f3" data-page="3" aria-label="Open project 3"><span class="hit" aria-hidden="true"></span><img class="art" src="img/figma-home/figure-3.png" alt=""><img class="poly" src="img/figma-home/polygon-3.svg" alt=""></button>
+<button class="figure f4" data-page="4" aria-label="Open project 4"><span class="hit" aria-hidden="true"></span><img class="art" src="img/figma-home/figure-4.png" alt=""><img class="poly" src="img/figma-home/polygon-4.svg" alt=""></button>
+</main>
+</div>
 
-    <header class="identity" aria-label="Portfolio identity">
-      <a class="identity-name" href="https://linktr.ee/anyajain">Anya Jain</a>
-      <p class="identity-tagline">To be creative is to be curious</p>
-      <p class="identity-school">Design, BA @ UCLA</p>
-    </header>
+<div class="modal" id="modal" aria-hidden="true">
+<button class="close" id="close" aria-label="Close">×</button>
+<div class="modal-inner" id="backdrop"><div class="page-wrap" id="pageWrap"></div></div>
+<div class="counter" id="counter"></div>
+</div>
 
-    <section class="works-strip" aria-label="Selected works">
-      <div class="work work-1">
-        <img src="img/figma-home/selected-work-1.png" alt="Selected work 1">
-      </div>
-      <div class="work work-2">
-        <img src="img/figma-home/selected-work-2.png" alt="Selected work 2">
-      </div>
-      <div class="work work-3">
-        <img src="img/figma-home/selected-work-3.png" alt="Selected work 3">
-      </div>
-      <div class="work work-4">
-        <img src="img/figma-home/selected-work-4.png" alt="Selected work 4">
-      </div>
-    </section>
-  </main>
+<template id="project-1"><section class="project-page" data-slide="2"><div class="slide-imgbox" style="left:2.096088%;top:24.063197%;width:19.164028%;height:21.026055%;"><img src="img/portfolio-slides/export-media/image7.png" alt="" draggable="false" style="left:-115.69999300%;top:-29.15000842%;width:349.82159099%;height:153.17923502%;"></div><div class="slide-imgbox" style="left:3.083648%;top:60.208880%;width:18.458798%;height:22.066382%;"><img src="img/portfolio-slides/export-media/image13.png" alt="" draggable="false" style="left:-79.16055034%;top:-0.00000000%;width:248.79954221%;height:100.00000000%;"></div><div class="slide-imgbox" style="left:22.444417%;top:28.149606%;width:20.055077%;height:20.520751%;"><img src="img/portfolio-slides/export-media/image17.png" alt="" draggable="false" style="left:-80.74189465%;top:-5.37961302%;width:243.40375815%;height:114.28963279%;"></div><div class="slide-imgbox" style="left:22.755318%;top:50.688758%;width:19.163960%;height:26.369969%;"><img src="img/portfolio-slides/export-media/image11.png" alt="" draggable="false" style="left:-104.86155214%;top:-2.35951568%;width:317.54096278%;height:110.87949616%;"></div><div class="slide-imgbox" style="left:45.256794%;top:59.852294%;width:16.192749%;height:22.414548%;"><img src="img/portfolio-slides/export-media/image5.png" alt="" draggable="false" style="left:-100.40114245%;top:-5.62962963%;width:320.91396297%;height:111.38958507%;"></div><div class="slide-imgbox" style="left:45.256794%;top:21.899743%;width:16.192749%;height:24.078385%;"><img src="img/portfolio-slides/export-media/image15.png" alt="" draggable="false" style="left:-123.66425371%;top:-3.42968532%;width:344.70872113%;height:111.38958507%;"></div><div class="slide-imgbox" style="left:64.787265%;top:28.149757%;width:33.116429%;height:48.908916%;"><img src="img/portfolio-slides/export-media/image12.png" alt="" draggable="false" style="left:-118.92342630%;top:-6.17943804%;width:354.83642041%;height:115.43878281%;"></div><div class="slide-text" style="left:5.074366%;top:5.000000%;width:60.646325%;height:9.904035%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:2.430556cqw;font-weight:300;color:#000000;">Mixed Material Jali Concepts</span><br><br><span style="font-size:1.736111cqw;font-weight:200;color:#000000;">Final Renderings (AutoDesk Fusion 360)</span></div></div><div class="slide-text" style="left:5.074366%;top:83.424759%;width:97.047244%;height:12.417979%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:300;color:#000;">Research </span><span style="font-size:1.388889cqw;font-weight:300;color:#000000;">Notes:</span><br></div><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">-  Irregular hexagons often used to fit in grid layout (interior lines meet at centroid)</span></div><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">- Spatial perception is manipulated through isometric illusions</span><br><span style="font-size:1.388889cqw;font-weight:200;color:#000;">- </span><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">Tessellation plus isometric illusions creates visually-appealing complexity. </span><br><br></div></div><div class="slide-text" style="left:5.021736%;top:14.381015%;width:92.880577%;height:6.471457%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">Patterns help make a building more connected to its environment and the architecture more digestible for one’s eyes. I believe patterns should be incorporated into all types of design, not just architecture. </span></div></div></section></template>
+<template id="project-2"><section class="project-page" data-slide="3"><div class="slide-imgbox" style="left:5.074366%;top:27.263957%;width:33.222263%;height:21.153912%;border:0.750pt solid #FFD0F9;"><img src="img/portfolio-slides/export-media/image16.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div><div class="slide-imgbox" style="left:36.245079%;top:37.199407%;width:58.388014%;height:49.264887%;border:0.750pt dashed #FC956D;"><img src="img/portfolio-slides/export-media/image18.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div><div class="slide-text" style="left:5.074366%;top:5.000000%;width:67.712434%;height:11.031824%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:2.430556cqw;font-weight:300;color:#000;">DiyaDiya Studio Website Redesign Concept</span><br><br><span style="font-size:1.736111cqw;font-weight:200;color:#000;">Desktop Previews (Figma)</span></div></div><div class="slide-imgbox" style="left:5.074366%;top:50.121664%;width:47.770601%;height:45.531236%;border:0.750pt solid #FFD0F9;"><img src="img/portfolio-slides/export-media/image20.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div><div class="slide-text" style="left:5.074366%;top:14.676974%;width:54.183071%;height:9.694882%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">Diya Joukani is a young, Mumbai-based fashion designer who uses streetwear </span><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">silhouettes and traditional Indian embroidery techniques in her designs. The goal with this project was to design a website that is youthful, cultural, and suitable for a contemporary clothing brand.</span></div></div><div class="slide-imgbox" style="left:63.122498%;top:4.999863%;width:31.510622%;height:29.233678%;border:0.750pt dashed #000000;"><img src="img/portfolio-slides/export-media/image2.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div></section></template>
+<template id="project-3"><section class="project-page" data-slide="4"><div class="slide-text" style="left:2.650440%;top:16.722058%;width:67.712434%;height:11.031824%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:2.430556cqw;font-weight:300;color:#000;">Polyhedron-based Side</span><span style="font-size:2.430556cqw;font-weight:300;color:#000;"> Table Concept</span><br><br><span style="font-size:1.736111cqw;font-weight:200;color:#000;">Final Rendering (AutoDesk Fusion 360)</span></div></div><div class="slide-imgbox" style="left:77.721935%;top:24.585726%;width:17.256411%;height:11.775290%;"><img src="img/portfolio-slides/export-media/image4.png" alt="" draggable="false" style="left:-44.49888259%;top:-24.46098679%;width:214.88739900%;height:151.30195331%;"></div><div class="slide-imgbox" style="left:78.832117%;top:55.366483%;width:17.256070%;height:13.211026%;"><img src="img/portfolio-slides/export-media/image8.png" alt="" draggable="false" style="left:-43.53975611%;top:-10.01048742%;width:198.92975790%;height:124.85017978%;"></div><div class="slide-imgbox" style="left:73.753363%;top:37.786691%;width:17.256616%;height:16.153912%;"><img src="img/portfolio-slides/export-media/image14.png" alt="" draggable="false" style="left:-40.82105837%;top:-0.00000000%;width:194.84062037%;height:100.00000000%;"></div><div class="slide-text" style="left:73.753459%;top:17.198299%;width:23.097113%;height:3.912402%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">Base Form </span></div><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000000;">(no detailing/colors</span><span style="font-size:1.388889cqw;font-weight:200;color:#000;">)</span></div></div><div class="slide-imgbox" style="left:4.110441%;top:27.753855%;width:66.252461%;height:40.823545%;"><img src="img/portfolio-slides/export-media/image6.png" alt="" draggable="false" style="left:-13.78036580%;top:-0.00000000%;width:128.26103686%;height:100.00000000%;"></div><div class="slide-text" style="left:3.439592%;top:73.521230%;width:93.909941%;height:9.756398%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;">I was inspired by this research paper to </span><span style="font-size:1.388889cqw;font-weight:200;color:#000;">create</span><span style="font-size:1.388889cqw;font-weight:200;color:#000;"> this:</span><span style="font-size:1.388889cqw;font-weight:300;color:#000;"> </span><a href="https://archive.bridgesmathart.org/2011/bridges2011-1.pdf" target="_blank" rel="noreferrer" style="font-size:1.388889cqw;font-weight:300;color:#0097a7;text-decoration:underline;">https://archive.bridgesmathart.org/2011/bridges2011-1.pdf</a></div><div class="slide-p"><br><span style="font-size:1.388889cqw;font-weight:200;color:#000;">The paper discussed the </span><span style="font-size:1.388889cqw;font-weight:200;color:#000;">application</span><span style="font-size:1.388889cqw;font-weight:200;color:#000;"> of smoothing shapes like octahedrons and tetrahedrons to art and fashion.</span></div></div></section></template>
+<template id="project-4"><section class="project-page" data-slide="5"><div class="slide-text" style="left:4.630263%;top:69.662825%;width:16.203248%;height:19.217520%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div><div class="slide-text" style="left:64.415026%;top:45.581802%;width:30.954724%;height:36.966864%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div><div class="slide-text" style="left:10.872567%;top:33.404760%;width:29.785925%;height:29.687500%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div><div class="slide-imgbox" style="left:21.758804%;top:38.347892%;width:36.246227%;height:24.744368%;"><img src="img/portfolio-slides/export-media/image21.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div><div class="slide-imgbox" style="left:9.332281%;top:70.586724%;width:28.738462%;height:17.369860%;"><img src="img/portfolio-slides/export-media/image22.png" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div><div class="slide-text" style="left:4.630427%;top:11.119491%;width:67.712434%;height:11.031824%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:2.430556cqw;font-weight:300;color:#000;">Mixed Media Wildlife Illustrations</span><br></div><div class="slide-p"><span style="font-size:1.736111cqw;font-weight:200;color:#000;">(Drawn in AutoDesk Sketchbook)</span></div></div><div class="slide-text" style="left:4.630085%;top:22.151479%;width:59.785105%;height:15.419948%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.736111cqw;font-weight:200;color:#000000;">These pieces use a technique that I </span><span style="font-size:1.736111cqw;font-weight:200;color:#000;">developed</span><span style="font-size:1.736111cqw;font-weight:200;color:#000000;"> in which I use a double exposure of geometric lighting photographs (taken by me) and layers of digital drawing to form the piece’s composition. </span><br></div></div><div class="slide-imgbox" style="left:66.115923%;top:54.849341%;width:27.553245%;height:18.431663%;"><img src="img/portfolio-slides/export-media/image19.jpg" alt="" draggable="false" style="left:0;top:0;width:100%;height:100%;"></div></section></template>
+
+<script>
+(() => {
+ const modal=document.getElementById('modal');
+ const wrap=document.getElementById('pageWrap');
+ const counter=document.getElementById('counter');
+ const close=document.getElementById('close');
+ const backdrop=document.getElementById('backdrop');
+
+ function openPage(n){
+   wrap.innerHTML=document.getElementById('project-'+n).innerHTML;
+   counter.textContent=n+' / 4';
+   modal.classList.add('open');
+   modal.setAttribute('aria-hidden','false');
+   document.body.style.overflow='hidden';
+ }
+ function shut(){
+   modal.classList.remove('open');
+   modal.setAttribute('aria-hidden','true');
+   wrap.innerHTML='';
+   document.body.style.overflow='';
+ }
+ document.querySelectorAll('.figure').forEach(b=>b.addEventListener('click',()=>openPage(b.dataset.page)));
+ close.addEventListener('click',e=>{e.stopPropagation();shut();});
+ backdrop.addEventListener('click',e=>{if(e.target===backdrop)shut();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))shut();});
+})();
+</script>
 </body>
 </html>
