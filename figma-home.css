@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300&display=swap');
+
+:root {
+  --page-pad: 65px;
+  --ink: #000;
+  --paper: #fff;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); }
+body { font-family: 'Lexend', Arial, sans-serif; }
+
+a { color: inherit; }
+
+.portfolio-home {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.home-label {
+  position: absolute;
+  left: var(--page-pad);
+  top: 70px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.3;
+  font-weight: 300;
+}
+
+.identity {
+  position: absolute;
+  right: var(--page-pad);
+  top: 31px;
+  width: 265px;
+  text-align: right;
+}
+
+.identity-name {
+  display: block;
+  font-size: 18px;
+  line-height: 1.15;
+  font-weight: 300;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.identity-tagline,
+.identity-school {
+  margin: 0;
+  font-weight: 100;
+}
+
+.identity-tagline {
+  margin-top: 1px;
+  font-size: 10px;
+  line-height: 1.15;
+}
+
+.identity-school {
+  margin-top: 8px;
+  font-size: 10px;
+  line-height: 1.15;
+}
+
+.works-strip {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  display: flex;
+  align-items: flex-end;
+  transform: translateY(-12%);
+}
+
+.work {
+  display: block;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.work img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-1 { width: 174px; height: 195px; }
+.work-2 { width: 207px; height: 228px; margin-left: -63px; }
+.work-3 { width: 168px; height: 185px; margin-left: -47px; }
+.work-4 { width: 125px; height: 143px; margin-left: -32px; margin-bottom: 10px; }
+
+@media (min-width: 1280px) {
+  .portfolio-home { min-height: 815px; }
+  .works-strip { top: 379px; transform: none; }
+  .work-1 { margin-top: 33px; }
+  .work-2 { margin-top: 0; }
+  .work-3 { margin-top: 33px; }
+  .work-4 { margin-top: 65px; margin-bottom: 0; }
+}
+
+@media (max-width: 760px) {
+  :root { --page-pad: 24px; }
+  .portfolio-home { min-height: 100svh; overflow-x: hidden; }
+  .home-label { top: 28px; }
+  .identity { top: 24px; width: 210px; }
+  .identity-name { font-size: 16px; }
+  .works-strip {
+    left: 18px;
+    right: 18px;
+    top: 44%;
+    align-items: flex-end;
+    transform: none;
+  }
+  .work-1 { width: 28vw; height: 31vw; }
+  .work-2 { width: 33vw; height: 36vw; margin-left: -10vw; }
+  .work-3 { width: 27vw; height: 30vw; margin-left: -8vw; }
+  .work-4 { width: 20vw; height: 23vw; margin-left: -5vw; margin-bottom: 2vw; }
+}
