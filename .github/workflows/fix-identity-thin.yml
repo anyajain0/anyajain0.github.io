@@ -1,0 +1,36 @@
+name: Fix identity thin font
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-identity-thin.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update identity font weight
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          s = s.replace('family=Lexend:wght@200;300', 'family=Lexend:wght@100;200;300')
+          s = s.replace('.identity-tagline{margin:0;font-size:10px;font-weight:200;line-height:normal}', '.identity-tagline{margin:0;font-size:10px;font-weight:100;line-height:normal}')
+          s = s.replace('.identity-school{margin:1px 0 0;font-size:10px;font-weight:200;line-height:normal}', '.identity-school{margin:1px 0 0;font-size:10px;font-weight:100;line-height:normal}')
+          p.write_text(s)
+          PY
+      - name: Commit change
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Use Lexend Thin for identity details'
+          git push
