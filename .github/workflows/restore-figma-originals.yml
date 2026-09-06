@@ -1,0 +1,37 @@
+name: Restore Figma originals
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/restore-figma-originals.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+      - name: Download original high-resolution Figma images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p img/figma-home
+          curl --fail --location -o img/figma-home/selected-work-1.png 'https://www.figma.com/api/mcp/asset/cf34255e-2973-497d-af61-db242df84a98'
+          curl --fail --location -o img/figma-home/selected-work-2.png 'https://www.figma.com/api/mcp/asset/739633ec-e109-48a7-be57-d231005ec059'
+          curl --fail --location -o img/figma-home/selected-work-3.png 'https://www.figma.com/api/mcp/asset/a0eccbc4-2b73-4610-8b97-e86bee85568d'
+          curl --fail --location -o img/figma-home/selected-work-4.png 'https://www.figma.com/api/mcp/asset/1e5bb6de-15e5-4ee0-b798-cd22aceca2cb'
+      - name: Commit corrected artwork
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add img/figma-home/
+          git diff --cached --quiet && exit 0
+          git commit -m 'Restore high-resolution Figma artwork originals'
+          git push origin HEAD:main
