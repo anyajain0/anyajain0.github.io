@@ -1,0 +1,36 @@
+name: Diagnose Figma asset transparency
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/diagnose-figma-assets.yml']
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download candidate raw Figma images
+        run: |
+          mkdir -p /tmp/figma
+          curl -L --fail -o /tmp/figma/1a.png 'https://www.figma.com/api/mcp/asset/cf34255e-2973-497d-af61-db242df84a98'
+          curl -L --fail -o /tmp/figma/1b.png 'https://www.figma.com/api/mcp/asset/da655b2e-e641-40a8-872a-230b585fa55b'
+          curl -L --fail -o /tmp/figma/2a.png 'https://www.figma.com/api/mcp/asset/739633ec-e109-48a7-be57-d231005ec059'
+          curl -L --fail -o /tmp/figma/2b.png 'https://www.figma.com/api/mcp/asset/a5664297-e7cb-4426-bbd6-63f4c6546017'
+          curl -L --fail -o /tmp/figma/3a.png 'https://www.figma.com/api/mcp/asset/a0eccbc4-2b73-4610-8b97-e86bee85568d'
+          curl -L --fail -o /tmp/figma/3b.png 'https://www.figma.com/api/mcp/asset/599ddf98-9195-4212-809d-862b0a1d1376'
+          curl -L --fail -o /tmp/figma/4a.png 'https://www.figma.com/api/mcp/asset/1e5bb6de-15e5-4ee0-b798-cd22aceca2cb'
+          curl -L --fail -o /tmp/figma/4b.png 'https://www.figma.com/api/mcp/asset/75feb75d-3c38-482f-b310-b9b63b429fa4'
+      - name: Inspect dimensions and alpha
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          for p in sorted(Path('/tmp/figma').glob('*.png')):
+              im=Image.open(p)
+              info=[p.name, str(im.size), im.mode]
+              if 'A' in im.getbands():
+                  a=im.getchannel('A')
+                  info += [f'alpha_extrema={a.getextrema()}', f'alpha_bbox={a.getbbox()}']
+              print(' | '.join(info))
+          PY
