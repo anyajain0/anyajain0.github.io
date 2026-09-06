@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p img/portfolio-slides img/figma-home /tmp/portfolio-unpacked
+          mkdir -p img/portfolio-slides/export-media img/figma-home /tmp/portfolio-unpacked
 
           # Current Figma homepage artwork + polygon vectors.
           curl -L --fail --retry 3 -o img/figma-home/figure-1.png 'https://www.figma.com/api/mcp/asset/f9dbb623-f99e-40b2-9035-a8735dd843ed.png'
@@ -30,15 +30,14 @@ jobs:
           curl -L --fail --retry 3 -o img/figma-home/polygon-3.svg 'https://www.figma.com/api/mcp/asset/7908b903-61da-43a8-86e8-17d267d54d79.svg'
           curl -L --fail --retry 3 -o img/figma-home/polygon-4.svg 'https://www.figma.com/api/mcp/asset/71c4b79b-02bd-42fd-8819-fe7456174e29.svg'
 
-          # Download the actual Google Slides deck as PPTX, then copy its original media files.
+          # Export the actual Google Slides deck and retain every original media file.
           curl -L --fail --retry 3 -o /tmp/portfolio.pptx 'https://docs.google.com/presentation/d/1V43G-vVa8GV4R0NZrBnWENe7KWKoU6atFZbv2FShRrM/export/pptx'
           unzip -q /tmp/portfolio.pptx -d /tmp/portfolio-unpacked
+          rm -rf img/portfolio-slides/export-media
+          mkdir -p img/portfolio-slides/export-media
+          cp /tmp/portfolio-unpacked/ppt/media/* img/portfolio-slides/export-media/
 
-          for name in image1.png image3.png image5.png image6.png image8.png image10.png image11.png image12.png image13.png image14.png image15.png image16.png image17.png image18.png image20.png image21.png image22.png image19.jpg; do
-            cp "/tmp/portfolio-unpacked/ppt/media/$name" "img/portfolio-slides/$name"
-          done
-
-          test -s img/portfolio-slides/image21.png
+          test -n "$(find img/portfolio-slides/export-media -type f -print -quit)"
           test -s img/figma-home/figure-1.png
 
       - name: Commit downloaded assets
@@ -47,10 +46,10 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add img/portfolio-slides img/figma-home/figure-*.png img/figma-home/polygon-*.svg
+          git add img/portfolio-slides/export-media img/figma-home/figure-*.png img/figma-home/polygon-*.svg
           if git diff --cached --quiet; then
             echo 'No asset changes to commit.'
             exit 0
           fi
-          git commit -m 'Add portfolio assets from Slides and Figma'
+          git commit -m 'Store all original Slides media assets'
           git push
