@@ -1,0 +1,45 @@
+name: Restore wildlife slide shapes
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-wildlife-shapes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore exact background ellipses
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          replacements = [
+            ('<div class="slide-text" style="left:4.630263%;top:69.662825%;width:16.203248%;height:19.217520%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div>',
+             '<div class="slide-shape" aria-hidden="true" style="left:4.630263%;top:69.662825%;width:16.203248%;height:19.217520%;border-radius:50%;background:#EFEFEF;"></div>'),
+            ('<div class="slide-text" style="left:64.415026%;top:45.581802%;width:30.954724%;height:36.966864%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div>',
+             '<div class="slide-shape" aria-hidden="true" style="left:64.415026%;top:45.581802%;width:30.954724%;height:36.966864%;border-radius:50%;background:#F9F8F8;border:0.13cqw solid #D9D9D9;"></div>'),
+            ('<div class="slide-text" style="left:10.872567%;top:33.404760%;width:29.785925%;height:29.687500%;padding:1.249795% 1.249795% 1.249795% 1.249795%;"><div class="slide-p"><span style="font-size:1.388889cqw;font-weight:200;color:#000;"></span></div></div>',
+             '<div class="slide-shape" aria-hidden="true" style="left:10.872567%;top:33.404760%;width:29.785925%;height:29.687500%;border-radius:50%;background:transparent;border:0.13cqw solid #B7B7B7;"></div>')
+          ]
+          changed = False
+          for old,new in replacements:
+              if old in s:
+                  s = s.replace(old,new,1)
+                  changed = True
+          if not changed:
+              raise SystemExit('Wildlife shape placeholders not found')
+          p.write_text(s)
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Restore wildlife slide background shapes'
+          git push
