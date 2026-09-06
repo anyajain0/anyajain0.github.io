@@ -1,0 +1,28 @@
+name: Apply homepage 12px typography
+on:
+  push:
+    paths:
+      - '.github/workflows/homepage-font-12.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update homepage typography
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          s = s.replace('.label{position:absolute;left:65px;top:70px;margin:0;font-size:10px;font-weight:300;line-height:normal}', '.label{position:absolute;left:65px;top:70px;margin:0;font-size:12px;font-weight:300;line-height:normal}')
+          s = s.replace('.identity-tagline{margin:0;font-size:10px;font-weight:100;line-height:normal}', '.identity-tagline{margin:0;font-size:12px;font-weight:100;line-height:normal}')
+          s = s.replace('.identity-school{margin:1px 0 0;font-size:10px;font-weight:100;line-height:normal}', '.identity-school{margin:1px 0 0;font-size:12px;font-weight:100;line-height:normal}')
+          p.write_text(s)
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git commit -m 'Set homepage secondary text to 12px' || exit 0
+          git push
