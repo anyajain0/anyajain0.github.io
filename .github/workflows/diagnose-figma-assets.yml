@@ -23,14 +23,8 @@ jobs:
           curl -L --fail -o /tmp/figma/4b.png 'https://www.figma.com/api/mcp/asset/75feb75d-3c38-482f-b310-b9b63b429fa4'
       - name: Inspect dimensions and alpha
         run: |
-          python - <<'PY'
-          from PIL import Image
-          from pathlib import Path
-          for p in sorted(Path('/tmp/figma').glob('*.png')):
-              im=Image.open(p)
-              info=[p.name, str(im.size), im.mode]
-              if 'A' in im.getbands():
-                  a=im.getchannel('A')
-                  info += [f'alpha_extrema={a.getextrema()}', f'alpha_bbox={a.getbbox()}']
-              print(' | '.join(info))
-          PY
+          for f in /tmp/figma/*.png; do
+            echo "=== $f ==="
+            file "$f"
+            identify -format 'size=%wx%h channels=%[channels] opaque=%[opaque]\n' "$f" || true
+          done
