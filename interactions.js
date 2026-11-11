@@ -32,15 +32,13 @@ video.addEventListener('play',syncPlayback);video.addEventListener('pause',syncP
 video.addEventListener('timeupdate',syncProgress);video.addEventListener('loadedmetadata',syncProgress);video.addEventListener('durationchange',syncProgress);
 video.addEventListener('keydown',event=>{if(event.code==='Space'||event.code==='KeyK'){event.preventDefault();togglePlayback()}});
 syncPlayback();syncProgress();video.play().catch(syncPlayback);
-const tooltip=document.querySelector('.piece-tooltip'),pickerCursor=document.querySelector('.picker-cursor');
+const tooltip=document.querySelector('.piece-tooltip');
 const finePointer=matchMedia('(hover: hover) and (pointer: fine)');
 const imageSamples=new WeakMap(),videoCanvases=new WeakMap();
-let activePiece=null,cursorFrame=0,pointer=null;
-function hidePicker(){pickerCursor.hidden=true;tooltip.hidden=true;activePiece=null;document.documentElement.classList.remove('picker-active')}
-function textAtPoint(target,x,y){
- const root=target.closest('.text,span,p,strong,button,a');
- if(!root||root.querySelector('img,video,svg')||!root.textContent.trim())return false;
- return true;
+let tooltipFrame=0,pointer=null;
+function hideTooltip(){
+ if(tooltipFrame)cancelAnimationFrame(tooltipFrame);
+ tooltipFrame=0;pointer=null;tooltip.hidden=true;
 }
 function backgroundColor(target){
  let color=[255,255,255],layers=[];
@@ -87,31 +85,24 @@ function positionTooltip(x,y){
  if(top+h>innerHeight-12)top=y-h-20;
  tooltip.style.left=`${Math.max(12,left)}px`;tooltip.style.top=`${Math.max(12,top)}px`;
 }
-function paintPicker(){
- cursorFrame=0;if(!pointer||!finePointer.matches)return;
+function paintTooltip(){
+ tooltipFrame=0;if(!pointer||!finePointer.matches)return;
  const {x,y}=pointer,target=document.elementFromPoint(x,y);
- if(!target||!target.closest('.home')){hidePicker();return}
- const isText=textAtPoint(target,x,y),bg=backgroundColor(target);
- const media=target.closest('img,video');
- const color=isText?'#ffffff':media?sampleMedia(media,x,y,bg):bg;
- pickerCursor.style.left=`${x}px`;pickerCursor.style.top=`${y}px`;
- pickerCursor.style.setProperty('--picked-color',color);
- pickerCursor.classList.toggle('is-text',isText);pickerCursor.hidden=false;
- document.documentElement.classList.add('picker-active');
- const piece=target.closest('[data-piece-title]');
- if(piece&&piece.dataset.pieceNote.trim()){
-  tooltip.querySelector('strong').textContent=piece.dataset.pieceTitle;
-  tooltip.querySelector('p').textContent=piece.dataset.pieceNote;
-  tooltip.style.setProperty('--picked-color',color);tooltip.hidden=false;activePiece=piece;positionTooltip(x,y);
- }else{tooltip.hidden=true;activePiece=null}
+ const piece=target?.closest('.home [data-piece-title]');
+ if(!piece?.dataset.pieceNote.trim()){tooltip.hidden=true;return}
+ const background=backgroundColor(target),media=target.closest('img,video');
+ const color=media?sampleMedia(media,x,y,background):background;
+ tooltip.querySelector('strong').textContent=piece.dataset.pieceTitle;
+ tooltip.querySelector('p').textContent=piece.dataset.pieceNote;
+ tooltip.style.setProperty('--picked-color',color);tooltip.hidden=false;positionTooltip(x,y);
 }
 document.addEventListener('pointermove',event=>{
  if(event.pointerType!=='mouse'||!finePointer.matches)return;
- pointer={x:event.clientX,y:event.clientY};if(!cursorFrame)cursorFrame=requestAnimationFrame(paintPicker);
+ pointer={x:event.clientX,y:event.clientY};if(!tooltipFrame)tooltipFrame=requestAnimationFrame(paintTooltip);
 },{passive:true});
-document.documentElement.addEventListener('pointerleave',hidePicker);
-document.addEventListener('keydown',event=>{if(event.key==='Escape'||event.key==='Tab')hidePicker()});
-addEventListener('blur',hidePicker);addEventListener('scroll',hidePicker,{passive:true});addEventListener('resize',hidePicker);
+document.documentElement.addEventListener('pointerleave',hideTooltip);
+document.addEventListener('keydown',event=>{if(event.key==='Escape'||event.key==='Tab')hideTooltip()});
+addEventListener('blur',hideTooltip);addEventListener('scroll',hideTooltip,{passive:true});addEventListener('resize',hideTooltip);
 // No asset navigation, native drag ghost, image context menu or copy interaction.
 document.addEventListener('dragstart',event=>{if(event.target.closest('.home'))event.preventDefault()});
 document.addEventListener('contextmenu',event=>{if(event.target.closest('.art,video.motion'))event.preventDefault()});
