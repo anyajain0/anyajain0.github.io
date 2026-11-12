@@ -8,7 +8,9 @@ const layers = [...board.querySelectorAll('[data-motion]')].map(element => {
   return {element, keyframes, fixedSize, last: []};
 });
 const phases = [...board.querySelectorAll('[data-phase]')];
-const motionTitle = board.querySelector('.motion-title');
+const videoLayer = board.querySelector('.video-layer');
+const videoKeyframes = layers.find(({element}) => element === videoLayer).keyframes;
+const videoControls = videoLayer.querySelector('.video-controls');
 const coutureReveal = board.querySelector('.couture-reveal');
 const preference = matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = value => Math.max(0, Math.min(1, value));
@@ -18,7 +20,7 @@ const blend = (progress, start, end) => {
 };
 
 // Bounds in the Figma coordinate system, including notes and open panels.
-const drawerBounds = [[97, 476], [292, 670], [475, 1044], [682, 1060]];
+const drawerBounds = [[97, 492], [292, 670], [475, 1044], [682, 1060]];
 const drawerCount = drawerBounds.length;
 const fullyOpenAt = .36;
 const closeAfter = 1 - fullyOpenAt;
@@ -74,10 +76,23 @@ function render(scroll) {
   board.style.setProperty('--offset-x', `${(viewportWidth - 1280 * scale) / 2}px`);
   board.style.setProperty('--offset', `${reducedMotion && scroll === 0 ? 0 : offset}px`);
 
+  const [, videoOpen, jaliOpen, coutureOpen, mixedOpen] = openings;
+  const videoTopProgress = blend(videoOpen, 0, .4);
+  const closedVideoTop = videoKeyframes[0][1];
+  const videoTop = closedVideoTop + (videoKeyframes[1][1] - closedVideoTop) * videoTopProgress;
+  const controlsBottom = videoTop + weighted(videoKeyframes.map(box => box[3])) + videoControls.offsetHeight;
   for (const {element, keyframes, fixedSize, last} of layers) {
     const dimensions = fixedSize ? 2 : boxProperties.length;
     for (let index = 0; index < dimensions; index++) {
-      const value = Math.round(weighted(keyframes.map(box => box[index])) * 1000) / 1000;
+      // Lower the video beneath the heading before its right edge reaches it.
+      let position = element === videoLayer && boxProperties[index] === 'top'
+        ? videoTop
+        : weighted(keyframes.map(box => box[index]));
+      if (element.dataset.phase === 'expand' && boxProperties[index] === 'height') {
+        const drawerTop = weighted(keyframes.map(box => box[1]));
+        position = Math.max(position, controlsBottom + 2 - drawerTop);
+      }
+      const value = Math.round(position * 1000) / 1000;
       if (last[index] === value) continue;
       last[index] = value;
       if (!fixedSize) element.style[boxProperties[index]] = `${value}px`;
@@ -88,7 +103,6 @@ function render(scroll) {
     }
   }
 
-  const [, videoOpen, jaliOpen, coutureOpen, mixedOpen] = openings;
   const visibility = {expand: videoOpen, jali: jaliOpen, couture: coutureOpen, mixed: mixedOpen};
   // The opening aperture starts at the pink strip and grows with its mockups.
   const clipTop = 514 - 39 * coutureOpen;
@@ -98,8 +112,6 @@ function render(scroll) {
   coutureReveal.style.clipPath = coutureOpen === 1
     ? 'none'
     : `inset(${clipTop}px ${clipRight}px calc(100% - ${clipBottom}px) ${clipLeft}px)`;
-  motionTitle.hidden = videoOpen === 1;
-  motionTitle.style.clipPath = `inset(0 0 0 ${100 * clamp((311 * videoOpen - 127) / 182)}%)`;
   for (const layer of phases) {
     layer.hidden = visibility[layer.dataset.phase] === 0;
   }
