@@ -16,7 +16,7 @@ const preference = matchMedia('(prefers-reduced-motion: reduce)');
 const clamp = value => Math.max(0, Math.min(1, value));
 const blend = (progress, start, end) => {
   const ratio = clamp((progress - start) / (end - start));
-  return ratio * ratio * (3 - 2 * ratio);
+  return ratio ** 3 * (10 + ratio * (-15 + 6 * ratio));
 };
 
 // Bounds in the Figma coordinate system, including notes and open panels.
@@ -32,6 +32,18 @@ let travel = 1;
 let frame = 0;
 let drawnScroll = 0;
 let previousTime = null;
+let scrollVelocity = 0;
+const springFrequency = 24; // Inverse seconds. Critical damping has no bounce from rest.
+
+function stepSpring(position, velocity, target, elapsed) {
+  const displacement = position - target;
+  const momentum = velocity + springFrequency * displacement;
+  const decay = Math.exp(-springFrequency * elapsed);
+  return [
+    target + (displacement + momentum * elapsed) * decay,
+    (velocity - springFrequency * momentum * elapsed) * decay,
+  ];
+}
 
 function render(scroll) {
   const position = scroll * drawerCount;
@@ -120,16 +132,23 @@ function render(scroll) {
 function renderScroll(now) {
   frame = 0;
   const target = Math.max(0, Math.min(window.scrollY, travel));
-  const remaining = target - drawnScroll;
-  if (preference.matches || Math.abs(remaining) < .4) {
-    drawnScroll = target;
-    previousTime = null;
-  } else {
-    const elapsed = previousTime === null ? 16 : Math.min(now - previousTime, 40);
-    drawnScroll += remaining * (1 - Math.exp(-elapsed / 56));
-    previousTime = now;
-    scheduleRender();
+  if (!preference.matches) {
+    const elapsed = previousTime === null ? 1 / 60 : Math.min((now - previousTime) / 1000, .064);
+    [drawnScroll, scrollVelocity] = stepSpring(drawnScroll, scrollVelocity, target, elapsed);
+    if (drawnScroll < 0 || drawnScroll > travel) {
+      drawnScroll = Math.max(0, Math.min(drawnScroll, travel));
+      scrollVelocity = 0;
+    }
+    if (Math.abs(target - drawnScroll) > .15 || Math.abs(scrollVelocity) > 2) {
+      previousTime = now;
+      scheduleRender();
+      render(clamp(drawnScroll / travel));
+      return;
+    }
   }
+  drawnScroll = target;
+  scrollVelocity = 0;
+  previousTime = null;
   render(clamp(drawnScroll / travel));
 }
 
@@ -142,6 +161,8 @@ function resize() {
   viewportWidth = viewport.clientWidth;
   travel = Math.max(1, track.offsetHeight - viewport.offsetHeight);
   drawnScroll = Math.max(0, Math.min(window.scrollY, travel));
+  scrollVelocity = 0;
+  previousTime = null;
   scheduleRender();
 }
 
