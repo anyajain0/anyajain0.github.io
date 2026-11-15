@@ -130,7 +130,7 @@ a { color: inherit; }
   --copy-inset: 15px;
   position: absolute;
   top: var(--copy-inset);
-  font: 100 12px/15px Lexend, sans-serif;
+  font: 100 10px/normal Lexend, sans-serif;
   color: #000;
 }
 .drawer-copy p + p { margin-top: 15px; }
